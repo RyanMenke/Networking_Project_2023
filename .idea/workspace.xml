@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="993a7e2f-1cfc-47e4-ab11-f34922ee2a5d" name="Default Changelist" comment="" />
+    <list default="true" id="993a7e2f-1cfc-47e4-ab11-f34922ee2a5d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handshake.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handshake.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handshake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handshake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LogWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LogWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ServerSocketConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerSocketConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ServerSocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerSocketConnection.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +41,13 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="2XDojDrFUvLmWDenLPZCZLWCkSx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/project_config_file" />
@@ -93,12 +110,23 @@
       <workItem from="1698173149420" duration="501000" />
       <workItem from="1698175748490" duration="13776000" />
       <workItem from="1700942583468" duration="23000" />
-      <workItem from="1700942703625" duration="83642000" />
+      <workItem from="1700942703625" duration="93517000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

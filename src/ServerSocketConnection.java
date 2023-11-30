@@ -1,9 +1,7 @@
 import java.io.*;
 import java.net.Socket;
 import java.nio.ByteBuffer;
-import java.util.BitSet;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Given that a client has connected to your server, handle the communication with the client
@@ -14,20 +12,37 @@ public class ServerSocketConnection extends Thread {
     private OutputStream out;
     private Peer self;
     private int clientPeerId;
+    private boolean shouldClose = false;
     // This is an interface that an individual socket connection can use to communicate
     // with the server, whose job it is to maintain the state of all connected clients.
     private ConnectedClientInfo serverInterface;
 
+    private boolean canAcceptHave;
+
+    private boolean clientIsInterested;
+
     private Map<Integer, PeerState> peerStateMap = new HashMap<>();
+
+    private Queue<Integer> haveQueue = new LinkedList<>();
 
     public ServerSocketConnection(Socket connection, Peer self, ConnectedClientInfo serverInterface) {
         this.connection = connection;
         this.self = self;
         this.serverInterface = serverInterface;
+
+        this.canAcceptHave = false;
     }
 
     public int getClientPeerId() {
         return clientPeerId;
+    }
+
+    public boolean getCanAcceptHave() {
+        return this.canAcceptHave;
+    }
+
+    public boolean getClientIsInterested() {
+        return this.clientIsInterested;
     }
 
     public void run() {
@@ -45,6 +60,18 @@ public class ServerSocketConnection extends Thread {
             }
 
             while (true) {
+                if (haveQueue.size() <= 0) {
+                    while (!haveQueue.isEmpty()) {
+                        ByteBuffer byteBuffer = ByteBuffer.allocate(Integer.BYTES);
+
+                        // Put the int value into the ByteBuffer
+                        byteBuffer.putInt(haveQueue.poll());
+
+                        // Retrieve the bytes from the ByteBuffer into a byte array
+                        byte[] indexAsByte = byteBuffer.array();
+                        sendMessage(Message.makeHave(indexAsByte).toBytes());
+                    }
+                }
                 while (in.available() == 0) {}
                 Message message = Message.fromInputStream(in);
                 switch (message.getMessageType()) {
@@ -57,10 +84,12 @@ public class ServerSocketConnection extends Thread {
                     case Message.INTERESTED:
                         System.out.println("Received INTERESTED");
                         serverInterface.clientIsInterested(clientPeerId);
+                        canAcceptHave = true;
                         break;
                     case Message.NOT_INTERESTED:
                         System.out.println("Received NOT_INTERESTED");
                         serverInterface.clientIsNotInterested(clientPeerId);
+                        canAcceptHave = true;
                         break;
                     case Message.HAVE:
                         System.out.println("Received HAVE");
@@ -120,9 +149,15 @@ public class ServerSocketConnection extends Thread {
         } finally {
             //Close connections
             try {
-                in.close();
-                out.close();
-                connection.close();
+                System.out.println("CLOSING SERVER CONNECTION");
+                if (shouldClose) {
+                    in.close();
+                    out.close();
+                    connection.close();
+                }
+//                in.close();
+//                out.close();
+//                connection.close();
             } catch (IOException ioException) {
 //                System.out.println("Disconnect with Client " + clientNumber);
             }
@@ -151,8 +186,21 @@ public class ServerSocketConnection extends Thread {
             out.write(msg);
             out.flush();
         } catch (IOException ioException) {
-            ioException.printStackTrace();
+            System.out.println("Failed to send message to client ID " + clientPeerId + " socket state is closed " + connection.isClosed());
+//            ioException.printStackTrace();
         }
+    }
+
+    public void addToHaveQueue(int index) {
+        haveQueue.offer(index);
+    }
+
+    public Queue<Integer> getHaveQueue() {
+        return haveQueue;
+    }
+
+    public int popHaveQueue() {
+        return haveQueue.poll();
     }
 
     public void sendUnchoke() {

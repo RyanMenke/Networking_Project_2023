@@ -212,15 +212,21 @@ public class Server {
     }
 
     public void notifyNeighborsOfNewPiece(int index) {
-        ByteBuffer byteBuffer = ByteBuffer.allocate(Integer.BYTES);
+        if (connections.size() > 0) {
+            ByteBuffer byteBuffer = ByteBuffer.allocate(Integer.BYTES);
 
-        // Put the int value into the ByteBuffer
-        byteBuffer.putInt(index);
+            // Put the int value into the ByteBuffer
+            byteBuffer.putInt(index);
 
-        // Retrieve the bytes from the ByteBuffer into a byte array
-        byte[] indexAsByte = byteBuffer.array();
-        for (ServerSocketConnection connection: connections) {
-            connection.sendMessage(Message.makeHave(indexAsByte).toBytes());
+            // Retrieve the bytes from the ByteBuffer into a byte array
+            byte[] indexAsByte = byteBuffer.array();
+            for (ServerSocketConnection connection : connections) {
+
+
+                connection.addToHaveQueue(index);
+                //connection.sendMessage(Message.makeHave(indexAsByte).toBytes());
+
+            }
         }
     }
 }

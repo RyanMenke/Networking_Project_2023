@@ -25,6 +25,8 @@ public class Client extends Thread {
 
     private ClientEvent eventEmitter;
 
+    private boolean iHaveShakenHands;
+
     public Client(Peer self, Peer peer, int clientId, ClientEvent eventEmitter) {
         this.self = self;
         this.peer = peer;
@@ -33,6 +35,11 @@ public class Client extends Thread {
         this.selfIsInterested = false;
         this.isChokedByServer = false;
         this.eventEmitter = eventEmitter;
+        this.iHaveShakenHands = false;
+    }
+
+    public boolean getIHaveShakenHands() {
+        return this.iHaveShakenHands;
     }
 
     interface ClientEvent {
@@ -111,6 +118,7 @@ public class Client extends Thread {
                         //serverBitSet = ByteConverter.byteArrayToBitSet(message.getContent());
                         System.out.println("SERVER BITSET LENGTH: " + serverBitSet.length());
                         System.out.println("SERVER BITSET FINAL INDEX: " + serverBitSet.get(1487));
+                        this.iHaveShakenHands = true;
                         if (self.isInterestedInPeer(serversBitfield.getBitset())) {
                             // handling the interested case.
                             indexList = self.getListOfInterestedIndexesFromBitset(serversBitfield.getBitset());
@@ -175,14 +183,16 @@ public class Client extends Thread {
         }
         finally{
             //Close connections
-            try{
-                in.close();
-                out.close();
-                requestSocket.close();
-            }
-            catch(IOException ioException){
-                ioException.printStackTrace();
-            }
+//            try{
+//                // TODO: THIS MUST CLOSE AT SOME POINT
+//                System.out.println("CLIENT CLOSING SERVER CONNECTION");
+//                in.close();
+//                out.close();
+//                requestSocket.close();
+//            }
+//            catch(IOException ioException){
+//                ioException.printStackTrace();
+//            }
         }
     }
     public void checkClientInterestAfterStateAssignmentAndSendResponse() {
@@ -208,7 +218,7 @@ public class Client extends Thread {
             out.flush();
         }
         catch(IOException ioException){
-            ioException.printStackTrace();
+//            ioException.printStackTrace();
         }
     }
 

@@ -55,7 +55,7 @@ public class Handshake {
 
     public static Handshake fromInputStream(InputStream input) throws IOException {
         System.out.println("About to read handshake bytes");
-        while (input.available() == 0) {}
+        while (input.available() < TOTAL_BYTES) {}
         System.out.println("Bytes available " + input.available());
         byte[] bytes = new byte[TOTAL_BYTES];
         input.read(bytes);
