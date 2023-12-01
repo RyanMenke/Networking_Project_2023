@@ -236,6 +236,8 @@ public class Client extends Thread {
             Handshake serverHandshake = Handshake.fromInputStream(input);
             System.out.println("Received server handshake");
 
+            LogWriter2.getInstance(self).writeLog("Peer "+ self.getPeerId() + " is connected from Peer "+peer.getPeerId()+".");
+            //LogWriter.TCPMakeConnection(self.getPeerId(), peer.getPeerId());
             return true;
         } catch (Exception e) {
             System.out.println("Handshake failed ");

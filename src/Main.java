@@ -106,6 +106,13 @@ public class Main {
         // First, begin communicating with any other servers (peers) that we're supposed
         // to connect to
         Server server = new Server(p1);
+        try {
+            LogWriter2.getInstance(p1);
+        } catch (Exception e) {
+            System.out.println("Failed to initialize LogWriter");
+            System.exit(1);
+        }
+
         ArrayList<Client> peersToConnectTo = getServersWeShouldConnectTo(p1, peerId, peers, server);
         System.out.println("Should attempt to connect to " + peersToConnectTo.size() + " peers");
         // For each client, start a thread that will connect to the peer that it's supposed to

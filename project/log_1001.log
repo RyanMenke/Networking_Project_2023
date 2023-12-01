@@ -1,0 +1,12 @@
+Nov 30, 2023 9:56:19 PM LogWriter2 run
+INFO: 2023-11-30T21:56:19.229302: Peer 1001 makes a connection to Peer 1003.
+Nov 30, 2023 9:56:41 PM LogWriter2 run
+INFO: 2023-11-30T21:56:41.756383: Peer 1001 makes a connection to Peer 1002.
+Nov 30, 2023 9:56:48 PM LogWriter2 run
+INFO: 2023-11-30T21:56:48.248840: Peer 1001 makes a connection to Peer 1003.
+Nov 30, 2023 9:56:56 PM LogWriter2 run
+INFO: 2023-11-30T21:56:56.836736: Peer 1001 makes a connection to Peer 1004.
+Nov 30, 2023 9:57:09 PM LogWriter2 run
+INFO: 2023-11-30T21:57:09.176809: Peer 1001 makes a connection to Peer 1005.
+Nov 30, 2023 9:57:40 PM LogWriter2 run
+INFO: 2023-11-30T21:57:40.897285: Peer 1001 makes a connection to Peer 1006.

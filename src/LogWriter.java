@@ -8,11 +8,11 @@ public class LogWriter {
 
     //Message for when a peer makes a connection
 
-    public static void TCPMakeConnection(int peer1, int peer2) {
+    public static synchronized void TCPMakeConnection(int peer1, int peer2) {
         LocalDateTime timeOfConnection = LocalDateTime.now();
 
-        String peer_1_name = "peer_100" + peer1;
-        String peer_2_name = "peer_100" + peer2;
+        String peer_1_name = "peer_" + peer1;
+        String peer_2_name = "peer_" + peer2;
 
 
 
@@ -22,8 +22,9 @@ public class LogWriter {
 
             // I need to create a FileHandler to be able to write log files
 
-            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log");
+            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log",500,1, true);
             fileHandler.setFormatter(new SimpleFormatter());
+
             logger.addHandler(fileHandler);
 
             // Set the logging level (e.g., INFO, WARNING, SEVERE)
@@ -44,11 +45,11 @@ public class LogWriter {
 
         //Message for when a TCP connection is received
 
-    public static void TCPReceiveConnection(int peer1, int peer2) {
+    public static synchronized void TCPReceiveConnection(int peer1, int peer2) {
         LocalDateTime timeOfConnection = LocalDateTime.now();
 
-        String peer_1_name = "peer_100" + peer1;
-        String peer_2_name = "peer_100" + peer2;
+        String peer_1_name = "peer_" + peer1;
+        String peer_2_name = "peer_" + peer2;
 
 
 
@@ -58,7 +59,7 @@ public class LogWriter {
 
             // I need to create a FileHandler to be able to write log files
 
-            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log");
+            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log",5000,1, true);
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
 
@@ -83,7 +84,7 @@ public class LogWriter {
     public static void ChangePreferredNeighbor(int peer1, String preferredNeighborList) {
         LocalDateTime timeOfConnection = LocalDateTime.now();
 
-        String peer_1_name = "peer_100" + peer1;
+        String peer_1_name = "peer_" + peer1;
 
 
 
@@ -94,7 +95,7 @@ public class LogWriter {
 
             // I need to create a FileHandler to be able to write log files
 
-            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log");
+            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log",0,1, true);
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
 
@@ -119,8 +120,8 @@ public class LogWriter {
     public static void ChangeOptimisticallyUnchokedNeighbor(int peer1, int peer2) {
         LocalDateTime timeOfConnection = LocalDateTime.now();
 
-        String peer_1_name = "peer_100" + peer1;
-        String peer_2_name = "peer_100" + peer2;
+        String peer_1_name = "peer_" + peer1;
+        String peer_2_name = "peer_" + peer2;
 
 
 
@@ -130,7 +131,7 @@ public class LogWriter {
 
             // I need to create a FileHandler to be able to write log files
 
-            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log");
+            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log",0,1, true);
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
 
@@ -155,8 +156,8 @@ public class LogWriter {
     public static void Unchoking(int peer1, int peer2) {
         LocalDateTime timeOfConnection = LocalDateTime.now();
 
-        String peer_1_name = "peer_100" + peer1;
-        String peer_2_name = "peer_100" + peer2;
+        String peer_1_name = "peer_" + peer1;
+        String peer_2_name = "peer_" + peer2;
 
 
 
@@ -166,7 +167,7 @@ public class LogWriter {
 
             // I need to create a FileHandler to be able to write log files
 
-            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log");
+            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log",0,1, true);
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
 
@@ -191,8 +192,8 @@ public class LogWriter {
     public static void Choking(int peer1, int peer2) {
         LocalDateTime timeOfConnection = LocalDateTime.now();
 
-        String peer_1_name = "peer_100" + peer1;
-        String peer_2_name = "peer_100" + peer2;
+        String peer_1_name = "peer_" + peer1;
+        String peer_2_name = "peer_" + peer2;
 
 
 
@@ -202,7 +203,7 @@ public class LogWriter {
 
             // I need to create a FileHandler to be able to write log files
 
-            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log");
+            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log",0,1, true);
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
 
@@ -227,8 +228,8 @@ public class LogWriter {
     public static void ReceiveHaveMessage(int peer1, int peer2, int pieceIndex) {
         LocalDateTime timeOfConnection = LocalDateTime.now();
 
-        String peer_1_name = "peer_100" + peer1;
-        String peer_2_name = "peer_100" + peer2;
+        String peer_1_name = "peer_" + peer1;
+        String peer_2_name = "peer_" + peer2;
 
 
 
@@ -238,7 +239,7 @@ public class LogWriter {
 
             // I need to create a FileHandler to be able to write log files
 
-            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log");
+            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log",0,1, true);
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
 
@@ -263,8 +264,8 @@ public class LogWriter {
     public static void ReceiveInterestedMessage(int peer1, int peer2) {
         LocalDateTime timeOfConnection = LocalDateTime.now();
 
-        String peer_1_name = "peer_100" + peer1;
-        String peer_2_name = "peer_100" + peer2;
+        String peer_1_name = "peer_" + peer1;
+        String peer_2_name = "peer_" + peer2;
 
 
 
@@ -274,7 +275,7 @@ public class LogWriter {
 
             // I need to create a FileHandler to be able to write log files
 
-            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log");
+            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log",0,1, true);
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
 
@@ -299,8 +300,8 @@ public class LogWriter {
     public static void ReceiveNotInterestedMessage(int peer1, int peer2) {
         LocalDateTime timeOfConnection = LocalDateTime.now();
 
-        String peer_1_name = "peer_100" + peer1;
-        String peer_2_name = "peer_100" + peer2;
+        String peer_1_name = "peer_" + peer1;
+        String peer_2_name = "peer_" + peer2;
 
 
 
@@ -310,7 +311,7 @@ public class LogWriter {
 
             // I need to create a FileHandler to be able to write log files
 
-            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log");
+            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log",0,1, true);
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
 
@@ -335,8 +336,8 @@ public class LogWriter {
     public static void DownloadingPiece(int peer1, int peer2, int pieceIndex, int numberOfPieces) {
         LocalDateTime timeOfConnection = LocalDateTime.now();
 
-        String peer_1_name = "peer_100" + peer1;
-        String peer_2_name = "peer_100" + peer2;
+        String peer_1_name = "peer_" + peer1;
+        String peer_2_name = "peer_" + peer2;
 
 
 
@@ -346,7 +347,7 @@ public class LogWriter {
 
             // I need to create a FileHandler to be able to write log files
 
-            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log");
+            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log",0,1, true);
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
 
@@ -372,8 +373,8 @@ public class LogWriter {
     public static void CompletionOfDownload(int peer1, int peer2) {
         LocalDateTime timeOfConnection = LocalDateTime.now();
 
-        String peer_1_name = "peer_100" + peer1;
-        String peer_2_name = "peer_100" + peer2;
+        String peer_1_name = "peer_" + peer1;
+        String peer_2_name = "peer_" + peer2;
 
 
 
@@ -383,7 +384,7 @@ public class LogWriter {
 
             // I need to create a FileHandler to be able to write log files
 
-            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log");
+            FileHandler fileHandler = new FileHandler("../project/log_" + peer_1_name + ".log",0,1, true);
             fileHandler.setFormatter(new SimpleFormatter());
             logger.addHandler(fileHandler);
 

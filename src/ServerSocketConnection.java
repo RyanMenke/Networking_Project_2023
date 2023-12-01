@@ -221,6 +221,8 @@ public class ServerSocketConnection extends Thread {
             Handshake serverHandshake = new Handshake(self.getPeerId());
             sendMessage(serverHandshake.toBytes());
 
+            LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " makes a connection to Peer " + clientPeerId + ".");
+            //LogWriter.TCPReceiveConnection(self.getPeerId(), clientPeerId);
             return true;
         } catch (Exception e) {
             System.out.println("Handshake failed " + e.getMessage());
