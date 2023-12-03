@@ -69,120 +69,142 @@ public class Client extends Thread {
 //            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             while(true)
             {
-                while (in.available() == 0) {}
-                Message message = Message.fromInputStream(in);
-                switch (message.getMessageType()) {
-                    case Message.CHOKE:
-                        isChokedByServer = true;
-                        System.out.println("Received CHOKE");
+                if (!self.checkIfHasCompleteFile()) {
+                    while (in.available() == 0) {
+                    }
+                    Message message = Message.fromInputStream(in);
+                    switch (message.getMessageType()) {
+                        case Message.CHOKE:
+                            if (self.checkIfHasCompleteFile()) {
+                                sendMessage(Message.makeHasEntireFile().toBytes());
+                            }
+                            else {
 
-                        //writing log
-                        LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " is choked by " + peer.getPeerId() + ".");
-                        break;
-                    case Message.UN_CHOKE:
-                        this.isChokedByServer = false;
-                        System.out.println("Received UN_CHOKE");
-                        //writing the log
-                        LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " is unchoked by " + peer.getPeerId() + ".");
-                        if (selfIsInterested) {
-                            indexList = self.getListOfInterestedIndexesFromBitset(serverBitSet);
-                            Collections.shuffle(indexList);
-                            System.out.println("Inside UNCHOKE the chosen base index is: " + indexList.get(0));
-                            byte[] byteArray = ByteBuffer.allocate(Integer.BYTES).putInt(indexList.get(0)).array();
-                            sendMessage(Message.makeRequest(byteArray).toBytes());
-                        }
-                        else {
-                            sendMessage(Message.makeNotInterested().toBytes());
-                        }
-                        break;
-                    case Message.INTERESTED:
-                        System.out.println("Received INTERESTED");
-                        break;
-                    case Message.NOT_INTERESTED:
-                        System.out.println("Received NOT_INTERESTED");
-                        break;
-                    case Message.HAVE:
-                        System.out.println("Received HAVE");
-                        byte[] haveIndex = message.getContent();
-                        int indexForHave = ByteBuffer.wrap(haveIndex, 0, Integer.BYTES).getInt();
-                        System.out.println("When receiving a request the index is: " + indexForHave);
+
+                                isChokedByServer = true;
+                                System.out.println("Received CHOKE");
+
+                                //writing log
+                                LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " is choked by " + peer.getPeerId() + ".");
+                            }
+                            break;
+                        case Message.UN_CHOKE:
+                            if (self.checkIfHasCompleteFile()) {
+                                sendMessage(Message.makeHasEntireFile().toBytes());
+
+                            }
+                            else {
+                                this.isChokedByServer = false;
+                                System.out.println("Received UN_CHOKE");
+                                //writing the log
+                                LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " is unchoked by " + peer.getPeerId() + ".");
+                                if (selfIsInterested) {
+                                    indexList = self.getListOfInterestedIndexesFromBitset(serverBitSet);
+                                    Collections.shuffle(indexList);
+                                    System.out.println("Inside UNCHOKE the chosen base index is: " + indexList.get(0));
+                                    byte[] byteArray = ByteBuffer.allocate(Integer.BYTES).putInt(indexList.get(0)).array();
+                                    sendMessage(Message.makeRequest(byteArray).toBytes());
+                                } else {
+                                    sendMessage(Message.makeNotInterested().toBytes());
+                                }
+                            }
+                            break;
+                        case Message.INTERESTED:
+                            System.out.println("Received INTERESTED");
+                            break;
+                        case Message.NOT_INTERESTED:
+                            System.out.println("Received NOT_INTERESTED");
+                            break;
+                        case Message.HAVE:
+                            System.out.println("Received HAVE");
+                            if (self.checkIfHasCompleteFile()) {
+                                sendMessage(Message.makeHasEntireFile().toBytes());
+                            }
+                            else {
+                                byte[] haveIndex = message.getContent();
+                                int indexForHave = ByteBuffer.wrap(haveIndex, 0, Integer.BYTES).getInt();
+                                System.out.println("When receiving a request the index is: " + indexForHave);
 //                        boolean doesPeerHaveIndex = self.doesPeerHaveIndex(indexForHave);
-                        serverBitSet.set(indexForHave);
-                        indexList = self.getListOfInterestedIndexesFromBitset(serverBitSet);
+                                serverBitSet.set(indexForHave);
+                                indexList = self.getListOfInterestedIndexesFromBitset(serverBitSet);
 
-                        //write log
-                        LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " received the ‘have’ message from " + peer.getPeerId() + " for the piece " + indexForHave + ".");
-                        if (indexList.size() > 0) {
-                            sendMessage(Message.makeInterested().toBytes());
-                        }
-                        checkClientInterestAfterStateAssignmentAndSendResponse();
+                                //write log
+                                LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " received the ‘have’ message from " + peer.getPeerId() + " for the piece " + indexForHave + ".");
+                                if (indexList.size() > 0) {
+                                    sendMessage(Message.makeInterested().toBytes());
+                                }
+                                checkClientInterestAfterStateAssignmentAndSendResponse();
+                            }
 
-                        break;
-                    case Message.BIT_FIELD:
-                        System.out.println("Received BIT_FIELD");
-                        Bitfield serversBitfield = Bitfield.fromMessage(message);
-                        serverBitSet = serversBitfield.getBitset();
-                        System.out.println("SERVER BITSET FINAL INDEX: " + serverBitSet.get(1487));
-                        //serverBitSet = ByteConverter.byteArrayToBitSet(message.getContent());
-                        System.out.println("SERVER BITSET LENGTH: " + serverBitSet.length());
-                        System.out.println("SERVER BITSET FINAL INDEX: " + serverBitSet.get(1487));
-                        this.iHaveShakenHands = true;
-                        if (self.isInterestedInPeer(serversBitfield.getBitset())) {
-                            // handling the interested case.
-                            indexList = self.getListOfInterestedIndexesFromBitset(serversBitfield.getBitset());
-                            this.serverBitSet = serversBitfield.getBitset();
-                            System.out.println("This is the length of the Index List for requests: " + indexList.size());
-                            selfIsInterested = true;
-                            sendMessage(Message.makeInterested().toBytes());
-                            // Send the interested message
-                            System.out.print("Interested sent (Client)");
-                        }
-                        else {
-                            // handling the "not interested" case
-                            selfIsInterested = false;
-                            sendMessage(Message.makeNotInterested().toBytes());
-                            System.out.print("notInterested sent (Client)");
-                        }
-                        break;
-                    case Message.REQUEST:
-                        System.out.println("Received REQUEST");
-                        break;
-                    case Message.PIECE:
-                        System.out.println("Received PIECE");
-                        ByteBuffer byteBuffer = ByteBuffer.wrap(message.getContent(), 0, Integer.BYTES);
+                            break;
+                        case Message.BIT_FIELD:
+                            System.out.println("Received BIT_FIELD");
+                            Bitfield serversBitfield = Bitfield.fromMessage(message);
+                            serverBitSet = serversBitfield.getBitset();
+                            System.out.println("SERVER BITSET FINAL INDEX: " + serverBitSet.get(1487));
+                            //serverBitSet = ByteConverter.byteArrayToBitSet(message.getContent());
+                            System.out.println("SERVER BITSET LENGTH: " + serverBitSet.length());
+                            System.out.println("SERVER BITSET FINAL INDEX: " + serverBitSet.get(1487));
+                            this.iHaveShakenHands = true;
+                            if (self.isInterestedInPeer(serversBitfield.getBitset())) {
+                                // handling the interested case.
+                                indexList = self.getListOfInterestedIndexesFromBitset(serversBitfield.getBitset());
+                                this.serverBitSet = serversBitfield.getBitset();
+                                System.out.println("This is the length of the Index List for requests: " + indexList.size());
+                                selfIsInterested = true;
+                                sendMessage(Message.makeInterested().toBytes());
+                                // Send the interested message
+                                System.out.print("Interested sent (Client)");
+                            } else {
+                                // handling the "not interested" case
+                                selfIsInterested = false;
+                                sendMessage(Message.makeNotInterested().toBytes());
+                                System.out.print("notInterested sent (Client)");
+                            }
+                            break;
+                        case Message.REQUEST:
+                            System.out.println("Received REQUEST");
+                            break;
+                        case Message.PIECE:
+                            System.out.println("Received PIECE");
+                            ByteBuffer byteBuffer = ByteBuffer.wrap(message.getContent(), 0, Integer.BYTES);
 
-                        // Read the int value from the ByteBuffer
-                        int index = byteBuffer.getInt();
-                        byte[] pieceData = new byte[message.getContent().length - 4];
-                        System.arraycopy(message.getContent(), 4, pieceData, 0, pieceData.length);
-                        System.out.println("The length of the Piece I am receiving is: " + pieceData.length);
-                        System.out.println("The index of the Piece I am receiving is: " + index);
+                            // Read the int value from the ByteBuffer
+                            int index = byteBuffer.getInt();
+                            byte[] pieceData = new byte[message.getContent().length - 4];
+                            System.arraycopy(message.getContent(), 4, pieceData, 0, pieceData.length);
+                            System.out.println("The length of the Piece I am receiving is: " + pieceData.length);
+                            System.out.println("The index of the Piece I am receiving is: " + index);
 
-                        // Updating Clients internally stored data
-                        self.updateBitfieldWithNewIndex(index);
-                        self.updateImageFileData(index, pieceData);
+                            // Updating Clients internally stored data
+                            self.updateBitfieldWithNewIndex(index);
+                            self.updateImageFileData(index, pieceData);
 
-                        //write log
-                        LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " has downloaded the piece " + index + " from " + peer.getPeerId() + ". Now the number of pieces it has is " + self.getNumberOfPiecesInPosession() + ".");
-                        if (self.checkIfHasCompleteFile()) {
-                            FileReader.writeFile(self);
-                            sendMessage(Message.makeHasEntireFile().toBytes());
+                            //write log
+                            LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " has downloaded the piece " + index + " from " + peer.getPeerId() + ". Now the number of pieces it has is " + self.getNumberOfPiecesInPosession() + ".");
+                            if (self.checkIfHasCompleteFile()) {
+                                FileReader.writeFile(self);
+                                sendMessage(Message.makeHasEntireFile().toBytes());
 
-                            LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " has downloaded the complete file.");
-                        }
-                        System.out.println("MY IMAGE DATA: " + self.getImageFileData());
+                                LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " has downloaded the complete file.");
 
-                        // Sending message to server that piece has been received
-                        eventEmitter.pieceReceived(index);
+                                //close the clients connection
+                                closeClient();
+                            }
+                            System.out.println("MY IMAGE DATA: " + self.getImageFileData());
+
+                            // Sending message to server that piece has been received
+                            eventEmitter.pieceReceived(index);
 
 
-                        // Checking if after that update sets match up, in which case Client is no longer interested.
-                        indexList = self.getListOfInterestedIndexesFromBitset(serverBitSet);
-                        checkClientInterestAfterStateAssignmentAndSendResponse();
+                            // Checking if after that update sets match up, in which case Client is no longer interested.
+                            indexList = self.getListOfInterestedIndexesFromBitset(serverBitSet);
+                            checkClientInterestAfterStateAssignmentAndSendResponse();
 
-                        // TODO: I need to send a "have" message to ALL neighbors
+                            // TODO: I need to send a "have" message to ALL neighbors
 
-                        break;
+                            break;
+                    }
                 }
             }
         }
@@ -209,6 +231,18 @@ public class Client extends Thread {
 //            }
         }
     }
+    public void closeClient() {
+        try{
+                System.out.println("CLIENT CLOSING SERVER CONNECTION");
+                in.close();
+                out.close();
+                requestSocket.close();
+            }
+            catch(IOException ioException){
+                ioException.printStackTrace();
+            }
+    }
+
     public void checkClientInterestAfterStateAssignmentAndSendResponse() {
         if (indexList.size() < 1) {
             sendMessage(Message.makeNotInterested().toBytes());
@@ -232,7 +266,7 @@ public class Client extends Thread {
             out.flush();
         }
         catch(IOException ioException){
-//            ioException.printStackTrace();
+            ioException.printStackTrace();
         }
     }
 

@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class Server {
 
     private Peer peer;
+    private ServerSocket currentServerSocket;
     // Represents connected clients
     private Map<Integer, PeerState> peerStateMap = new HashMap<>();
     private List<ServerSocketConnection> connections = new ArrayList<>();
@@ -24,13 +25,26 @@ public class Server {
     }
 
     public void run() throws IOException {
+        System.out.println("RUN");
         ServerSocket listener = new ServerSocket(peer.getPortNumber());
         try {
+            System.out.println("INSIDE TRY");
             // This is where the unchoking interval is calculated
             pollForPreferredNeighbors();
             checkForOptimisticUnchoke();
 
             while(true) {
+                System.out.println();
+
+                currentServerSocket = listener;
+                if (checkIfAllPeersAndSelfHaveFile()){
+                    closeConnections();
+                    System.out.println("Made it to closing the server");
+                    listener.close();
+                    break;
+                }
+
+
                 Socket client = listener.accept();
                 System.out.println("Socket accepted");
                 ServerSocketConnection connection = new ServerSocketConnection(client, peer, new ServerSocketConnection.ConnectedClientInfo() {
@@ -103,21 +117,44 @@ public class Server {
                 connection.start();
                 System.out.println("Client "  + peer.getPeerId() + " is connected!");
                 connections.add(connection);
+                System.out.println("Made it JUST BEFORE closing the server");
             }
-        } finally {
-            listener.close();
+            System.out.println("Floating cloud");
+        }
+        catch (Exception e) {
+
+        }
+//        catch (IOException e) {
+//        }
+        //This is the finally statement I am Making it into where listener is closed
+            finally
+         {
+            System.out.println("Made it to closing the server");
+            System.out.println(listener.isClosed());
+            return;
+            //listener.close();
+        }
+
+    }
+
+    public void closeConnections() throws IOException {
+        for (ServerSocketConnection connection: connections) {
+            connection.closeServer();
         }
     }
 
     public boolean checkIfAllPeersAndSelfHaveFile() {
         boolean allPeersHaveFile = false;
         boolean selfHasFile = peer.hasFile();
-        for (Map.Entry<Integer, PeerState> entry: peerStateMap.entrySet()) {
-            if (!entry.getValue().hasCompleteFile()) {
-                return false;
+        if (connections.size() >= peer.getNumberOfClientsThatShouldConnect() && selfHasFile) {
+            for (ServerSocketConnection connection: connections) {
+                if (!connection.clientHasCompleteFile()) {
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
     private void checkForOptimisticUnchoke() {
@@ -128,6 +165,25 @@ public class Server {
         Runnable task = () -> {
             // Optimistic Unchoke code
             synchronized (peerStateMap) {
+                System.out.println("We should have this many total items: " + peer.getNumberOfClientsThatShouldConnect());
+                for (Map.Entry<Integer, PeerState> entry: peerStateMap.entrySet()) {
+                    System.out.println("This Id: " + entry.getKey() + ", do they have the file: " + entry.getValue().hasCompleteFile());
+                }
+                if (checkIfAllPeersAndSelfHaveFile()) {
+                    System.out.println("WE ALL HAVE THE FILE:" + checkIfAllPeersAndSelfHaveFile());
+                    try {
+                        System.out.println(executor.shutdownNow());
+                        this.currentServerSocket.close();
+                        System.out.println(currentServerSocket.isClosed());
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    finally {
+                        executor.shutdownNow();
+                    }
+                    return;
+                }
                 if (peerStateMap.isEmpty()) {
                     return;
                 }
@@ -183,6 +239,27 @@ public class Server {
 
         Runnable task = () -> {
             synchronized (peerStateMap) {
+                System.out.println("We should have this many total items: " + peer.getNumberOfClientsThatShouldConnect());
+                for (Map.Entry<Integer, PeerState> entry: peerStateMap.entrySet()) {
+                    System.out.println("This Id: " + entry.getKey() + ", do they have the file: " + entry.getValue().hasCompleteFile());
+                }
+                if (checkIfAllPeersAndSelfHaveFile()) {
+                    System.out.println("RETURN");
+                    System.out.println("WE ALL HAVE THE FILE:" + checkIfAllPeersAndSelfHaveFile());
+                    try {
+                        System.out.println(executor.shutdownNow());
+                        this.currentServerSocket.close();
+                        System.out.println(currentServerSocket.isClosed());
+                        System.out.println("PAST EXECUTOR");
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    finally {
+                        executor.shutdownNow();
+                    }
+                    return;
+                }
                 if (peerStateMap.isEmpty()) {
                     return;
                 }
@@ -354,6 +431,7 @@ public class Server {
 
 
                 connection.addToHaveQueue(index);
+                System.out.println("Am I Adding all indexes: " + index);
                 //connection.sendMessage(Message.makeHave(indexAsByte).toBytes());
 
             }

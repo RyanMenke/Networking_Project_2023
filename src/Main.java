@@ -37,6 +37,19 @@ public class Main {
         return serversToConnectTo;
     }
 
+    public static ArrayList<Integer> getClientsThatShouldConnectWithUs(Peer self, ArrayList<Peer> peers) {
+        ArrayList<Integer> clientsConnectingToUs = new ArrayList<>();
+
+        for (Peer peer: peers) {
+            if (peer.getPeerId() > self.getPeerId()) {
+                clientsConnectingToUs.add(peer.getPeerId());
+                System.out.println("Am I Addin :" + peer.getPeerId());
+            }
+        }
+
+        return clientsConnectingToUs;
+    }
+
     public static void main(String[] args) {
 
 
@@ -99,6 +112,10 @@ public class Main {
         else {
             p1.setImageFileDataToBlankByteArray();
         }
+
+        ArrayList<Integer> clientIdList = getClientsThatShouldConnectWithUs(p1, peers);
+        p1.setNumberOfClientsThatShouldConnect(clientIdList.size());
+
         System.out.println("THE NUMBER OF PIECES IS: " + p1.getNumberOfPieces());
         System.out.println("SIZE OF THE FINAL PIECE: " + p1.getPeerConfig().getFileSize() % p1.getPeerConfig().getPieceSize());
         System.out.println("the size of my bitset is: " + p1.getBitfield().length());
@@ -128,6 +145,9 @@ public class Main {
             server.run();
         } catch (IOException e) {
             System.out.println("Server failed with an IOException " + e.getMessage());
+        }
+        finally {
+            return;
         }
     }
 }

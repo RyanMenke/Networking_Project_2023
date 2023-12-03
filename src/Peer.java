@@ -14,6 +14,8 @@ public class Peer {
     private int portNumber;
     private boolean hasFile;
 
+    private int numberOfClientsThatShouldConnect;
+
     private boolean remainOpen;
 
     private int numberOfPieces;
@@ -43,6 +45,16 @@ public class Peer {
         hasFile = hFile;
 
         remainOpen = true;
+
+        this.numberOfClientsThatShouldConnect = 0;
+    }
+
+    public void setNumberOfClientsThatShouldConnect(int numberOfClients) {
+        this.numberOfClientsThatShouldConnect = numberOfClients;
+    }
+
+    public int getNumberOfClientsThatShouldConnect() {
+        return this.numberOfClientsThatShouldConnect;
     }
 
     // TODO: Left off here
@@ -276,7 +288,7 @@ public class Peer {
             }
         }
         this.hasFile = true;
-        return true;
+        return this.hasFile;
     }
     //First Peer:
     //This peer also finds out that it is the first

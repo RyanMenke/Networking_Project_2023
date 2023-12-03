@@ -13,6 +13,9 @@ public class ServerSocketConnection extends Thread {
     private Peer self;
     private int clientPeerId;
     private boolean shouldClose = false;
+
+    private boolean clientHasCompleteFile;
+
     // This is an interface that an individual socket connection can use to communicate
     // with the server, whose job it is to maintain the state of all connected clients.
     private ConnectedClientInfo serverInterface;
@@ -37,6 +40,7 @@ public class ServerSocketConnection extends Thread {
         this.canAcceptHave = false;
 
         this.downloadSpeed = Double.MAX_VALUE;
+        this.clientHasCompleteFile = false;
     }
 
     public int getClientPeerId() {
@@ -54,6 +58,10 @@ public class ServerSocketConnection extends Thread {
     public void setShouldClose(boolean shouldClose) { this.shouldClose = shouldClose; }
 
     public boolean getShouldClose() { return this.shouldClose; }
+
+    public void setClientHasCompleteFile(boolean hasCompleteFile) { this.clientHasCompleteFile = hasCompleteFile; }
+
+    public boolean clientHasCompleteFile() { return this.clientHasCompleteFile; }
 
     public void run() {
         try {
@@ -161,6 +169,8 @@ public class ServerSocketConnection extends Thread {
 
                     case Message.HAS_COMPLETE_FILE:
                         serverInterface.setHasCompleteFile(clientPeerId);
+                        this.clientHasCompleteFile = true;
+                        serverInterface.clientIsNotInterested(clientPeerId);
                         if (serverInterface.doAllPeersHaveCompleteFile()) {
                             setShouldClose(true);
                         }
