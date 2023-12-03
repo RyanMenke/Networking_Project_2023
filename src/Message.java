@@ -17,6 +17,8 @@ public class Message {
     public static final int REQUEST = 6;
     public static final int PIECE = 7;
 
+    public static final int HAS_COMPLETE_FILE = 8;
+
     public Message(int length, int messageType, byte[] content) {
         this.length = length;
         this.messageType = (byte) messageType;
@@ -66,6 +68,11 @@ public class Message {
 
     public static Message makeHave(byte[] content) {
         return new Message(content.length, HAVE, content);
+    }
+
+    public static Message makeHasEntireFile() {
+        byte[] a = new byte[0];
+        return new Message(1, HAS_COMPLETE_FILE, a);
     }
 
     /**

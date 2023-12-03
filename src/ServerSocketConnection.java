@@ -21,6 +21,10 @@ public class ServerSocketConnection extends Thread {
 
     private boolean clientIsInterested;
 
+    private Date startingTime;
+    private Date endingTime;
+    private double downloadSpeed;
+
     private Map<Integer, PeerState> peerStateMap = new HashMap<>();
 
     private Queue<Integer> haveQueue = new LinkedList<>();
@@ -31,6 +35,8 @@ public class ServerSocketConnection extends Thread {
         this.serverInterface = serverInterface;
 
         this.canAcceptHave = false;
+
+        this.downloadSpeed = Double.MAX_VALUE;
     }
 
     public int getClientPeerId() {
@@ -44,6 +50,10 @@ public class ServerSocketConnection extends Thread {
     public boolean getClientIsInterested() {
         return this.clientIsInterested;
     }
+
+    public void setShouldClose(boolean shouldClose) { this.shouldClose = shouldClose; }
+
+    public boolean getShouldClose() { return this.shouldClose; }
 
     public void run() {
         try {
@@ -134,13 +144,23 @@ public class ServerSocketConnection extends Thread {
                         // Copy byteArray1 into combinedArray
                         System.arraycopy(index, 0, combinedArray, 0, index.length);
 
+                        //this.startingTime = new Date();
                         // Copy byteArray2 into combinedArray starting from the end of byteArray1
                         System.arraycopy(pieceArray, 0, combinedArray, index.length, pieceArray.length);
+                        serverInterface.addToDownloadRate(clientPeerId, combinedArray.length);
                         sendMessage(Message.makePiece(combinedArray).toBytes());
 
                         break;
                     case Message.PIECE:
                         System.out.println("Received PIECE");
+                        break;
+
+                    case Message.HAS_COMPLETE_FILE:
+                        serverInterface.setHasCompleteFile(clientPeerId);
+                        if (serverInterface.doAllPeersHaveCompleteFile()) {
+                            setShouldClose(true);
+                        }
+                        System.out.println("HAS COMPLETE FILE");
                         break;
                 }
             }
@@ -178,6 +198,12 @@ public class ServerSocketConnection extends Thread {
         boolean isChoked(int peerId);
 
         void onDisconnected(ServerSocketConnection connection);
+
+        void addToDownloadRate(int peerId, int rate);
+
+        void setHasCompleteFile(int peerId);
+
+        boolean doAllPeersHaveCompleteFile();
     }
 
     //send a message to the output stream
@@ -189,6 +215,10 @@ public class ServerSocketConnection extends Thread {
             System.out.println("Failed to send message to client ID " + clientPeerId + " socket state is closed " + connection.isClosed());
 //            ioException.printStackTrace();
         }
+    }
+
+    public void closeServer() throws IOException {
+        connection.close();
     }
 
     public void addToHaveQueue(int index) {

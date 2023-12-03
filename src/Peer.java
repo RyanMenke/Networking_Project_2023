@@ -49,6 +49,7 @@ public class Peer {
     // TODO: ensure that the bitfield is divisible by 8, as it is measured in bytes
     public void setNumberOfPieces(int numberOfPieces) {
 
+        //System.out.println("BITFIELD: " + bitfield.length() + ", size: " + bitfield.size() + ", " + bitfield.cardinality());
 
         this.numberOfPieces = numberOfPieces;
         int bitfieldSize = numberOfPieces;
@@ -57,16 +58,23 @@ public class Peer {
             int ammountToAdd = 8 - remainder;
             bitfieldSize += ammountToAdd;
             System.out.println(bitfieldSize);
+            System.out.println("NUMBEROFPIECES: " + numberOfPieces + ", ammount to add: " + ammountToAdd + ", "
+            + remainder);
         }
 
         // Initialize a bitset where all bits are set to 0
-        bitfield = new BitSet(bitfieldSize);
+        bitfield = new BitSet(numberOfPieces);
+        System.out.println("NUMBEROFPIECES: " + numberOfPieces + ", ammount to add: " + bitfieldSize);
+        System.out.println("BITFIELD: " + bitfield.length() + ", size: " + bitfield.size() + ", " + bitfield.cardinality());
 
         if (hasFile) {
             for (int i = 0; i < numberOfPieces; i++) {
                 bitfield.set(i);
             }
         }
+
+        System.out.println("BITFIELD: " + bitfield.length() + ", size: " + bitfield.size() + ", " + bitfield.cardinality());
+
     }
 
     public void setPeerConfig(PeerConfiguration config) {
@@ -139,6 +147,16 @@ public class Peer {
         }
     }
 
+    public int[] arrayListToIntArray(ArrayList<Integer> arrayList) {
+        int[] intArray = new int[arrayList.size()];
+
+        for (int i = 0; i < arrayList.size(); i++) {
+            intArray[i] = arrayList.get(i);
+        }
+
+        return intArray;
+    }
+
     /**
      * We're interested in this peer if the peer has any pieces we don't have
      *
@@ -150,6 +168,7 @@ public class Peer {
 
         for (int index: zeroBitIndexes) {
             if (peerBitset.get(index)) {
+//                System.out.println("BITSET SIZE: " + index);
                 return true;
             }
         }
@@ -170,16 +189,19 @@ public class Peer {
     }
 
     private int[] zeroBitIndexes() {
-        int numZeroBits = bitfield.size() - bitfield.cardinality();
-        int[] zeroBits = new int[numZeroBits];
+        System.out.println("BITSET SIZE: " + bitfield.length() + ", " + bitfield.size() + ", " + bitfield.cardinality());
+        //int numZeroBits = bitfield.size() - bitfield.cardinality();
+        ArrayList<Integer> arrayToBeCopied = new ArrayList<>();
 
-        int currentIndex = 0;
 
-        for (int i = 0; i < bitfield.size(); i++) {
+        for (int i = 0; i < numberOfPieces; i++) {
+//            System.out.println("BITSET SIZE: " + bitfield.get(i));
             if (!bitfield.get(i)) {
-                zeroBits[currentIndex++] = i;
+                arrayToBeCopied.add(i);
             }
         }
+
+        int[] zeroBits = arrayListToIntArray(arrayToBeCopied);
 
         return zeroBits;
     }
@@ -194,10 +216,10 @@ public class Peer {
 
         boolean isFirstBool = index == (numberOfPieces);
         boolean isSecondBool = peerConfig.getFileSize() % pieceSize != 0;
-        System.out.println("Inside getPieceFromIndex the base index calculated is: " + offset);
-        System.out.println("Inside getPieceFromIndex the index is: " + index);
-        System.out.println("Inside getPieceFromIndex is the first bool true?: " + isFirstBool);
-        System.out.println("Inside getPieceFromIndex is the second bool true?: " + isSecondBool);
+//        System.out.println("Inside getPieceFromIndex the base index calculated is: " + offset);
+//        System.out.println("Inside getPieceFromIndex the index is: " + index);
+//        System.out.println("Inside getPieceFromIndex is the first bool true?: " + isFirstBool);
+//        System.out.println("Inside getPieceFromIndex is the second bool true?: " + isSecondBool);
 
         if (index == (numberOfPieces - 1) && peerConfig.getFileSize() % pieceSize != 0) {
             pieceSize = peerConfig.getFileSize() % pieceSize;
@@ -243,7 +265,7 @@ public class Peer {
                 return false;
             }
         }
-        hasFile = true;
+        this.hasFile = true;
         return true;
     }
     //First Peer:

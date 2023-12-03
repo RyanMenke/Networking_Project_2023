@@ -2,14 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="993a7e2f-1cfc-47e4-ab11-f34922ee2a5d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/LogWriter2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/log_1001.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1001.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/log_1002.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1002.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/log_1003.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1003.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/log_1004.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1004.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/log_1005.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1005.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/log_1006.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1006.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LogWriter.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/LogWriter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LogWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LogWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Peer.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Peer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Peer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Peer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PeerState.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeerState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PeerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeerState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ServerSocketConnection$ConnectedClientInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerSocketConnection$ConnectedClientInfo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ServerSocketConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerSocketConnection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ServerSocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerSocketConnection.java" afterDir="false" />
     </list>
@@ -109,7 +120,7 @@
       <workItem from="1698173149420" duration="501000" />
       <workItem from="1698175748490" duration="13776000" />
       <workItem from="1700942583468" duration="23000" />
-      <workItem from="1700942703625" duration="99470000" />
+      <workItem from="1700942703625" duration="117588000" />
     </task>
     <servers />
   </component>

@@ -8,3 +8,191 @@ Nov 30, 2023 9:57:41 PM LogWriter2 run
 INFO: 2023-11-30T21:57:41.638653: Peer 1006 is connected from Peer 1003.
 Nov 30, 2023 9:57:41 PM LogWriter2 run
 INFO: 2023-11-30T21:57:41.641750: Peer 1006 is connected from Peer 1005.
+Dec 02, 2023 10:24:43 PM LogWriter2 run
+INFO: 2023-12-02T22:24:43.916859: Peer 1006 is connected from Peer 1005.
+Dec 02, 2023 10:24:43 PM LogWriter2 run
+INFO: 2023-12-02T22:24:43.963286: Peer 1006 is connected from Peer 1002.
+Dec 02, 2023 10:24:43 PM LogWriter2 run
+INFO: 2023-12-02T22:24:43.965619: Peer 1006 is connected from Peer 1003.
+Dec 02, 2023 10:24:44 PM LogWriter2 run
+INFO: 2023-12-02T22:24:44.435473: Peer 1006 is connected from Peer 1004.
+Dec 02, 2023 10:24:44 PM LogWriter2 run
+INFO: 2023-12-02T22:24:44.439367: Peer 1006 is connected from Peer 1001.
+Dec 02, 2023 10:26:31 PM LogWriter2 run
+INFO: 2023-12-02T22:26:31.532148: Peer 1006 is connected from Peer 1004.
+Dec 02, 2023 10:26:31 PM LogWriter2 run
+INFO: 2023-12-02T22:26:31.609723: Peer 1006 is connected from Peer 1003.
+Dec 02, 2023 10:26:31 PM LogWriter2 run
+INFO: 2023-12-02T22:26:31.611340: Peer 1006 is connected from Peer 1001.
+Dec 02, 2023 10:26:32 PM LogWriter2 run
+INFO: 2023-12-02T22:26:32.117668: Peer 1006 is connected from Peer 1005.
+Dec 02, 2023 10:26:32 PM LogWriter2 run
+INFO: 2023-12-02T22:26:32.119605: Peer 1006 is connected from Peer 1002.
+Dec 02, 2023 10:28:51 PM LogWriter2 run
+INFO: 2023-12-02T22:28:50.978830: Peer 1006 is connected from Peer 1002.
+Dec 02, 2023 10:28:51 PM LogWriter2 run
+INFO: 2023-12-02T22:28:51.033340: Peer 1006 is connected from Peer 1001.
+Dec 02, 2023 10:28:51 PM LogWriter2 run
+INFO: 2023-12-02T22:28:51.034895: Peer 1006 is connected from Peer 1003.
+Dec 02, 2023 10:28:51 PM LogWriter2 run
+INFO: 2023-12-02T22:28:51.037033: Peer 1006 is connected from Peer 1005.
+Dec 02, 2023 10:28:51 PM LogWriter2 run
+INFO: 2023-12-02T22:28:51.038333: Peer 1006 is connected from Peer 1004.
+Dec 02, 2023 10:32:21 PM LogWriter2 run
+INFO: 2023-12-02T22:32:20.931669: Peer 1006 is connected from Peer 1002.
+Dec 02, 2023 10:32:21 PM LogWriter2 run
+INFO: 2023-12-02T22:32:21.826226: Peer 1006 is connected from Peer 1005.
+Dec 02, 2023 10:32:21 PM LogWriter2 run
+INFO: 2023-12-02T22:32:21.827917: Peer 1006 is connected from Peer 1001.
+Dec 02, 2023 10:32:21 PM LogWriter2 run
+INFO: 2023-12-02T22:32:21.829366: Peer 1006 is connected from Peer 1004.
+Dec 02, 2023 10:32:21 PM LogWriter2 run
+INFO: 2023-12-02T22:32:21.830722: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 3:33:34 AM LogWriter2 run
+INFO: 2023-12-03T03:33:34.163968: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 3:33:34 AM LogWriter2 run
+INFO: 2023-12-03T03:33:34.910031: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 3:33:34 AM LogWriter2 run
+INFO: 2023-12-03T03:33:34.912211: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 3:33:34 AM LogWriter2 run
+INFO: 2023-12-03T03:33:34.913965: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 3:33:34 AM LogWriter2 run
+INFO: 2023-12-03T03:33:34.915845: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 3:41:37 AM LogWriter2 run
+INFO: 2023-12-03T03:41:37.467792: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 3:41:37 AM LogWriter2 run
+INFO: 2023-12-03T03:41:37.718174: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 3:41:37 AM LogWriter2 run
+INFO: 2023-12-03T03:41:37.720452: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 3:41:37 AM LogWriter2 run
+INFO: 2023-12-03T03:41:37.721968: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 3:41:37 AM LogWriter2 run
+INFO: 2023-12-03T03:41:37.723582: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 6:15:43 AM LogWriter2 run
+INFO: 2023-12-03T06:15:43.900262: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 6:15:43 AM LogWriter2 run
+INFO: 2023-12-03T06:15:43.937737: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 6:15:43 AM LogWriter2 run
+INFO: 2023-12-03T06:15:43.939237: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 6:15:43 AM LogWriter2 run
+INFO: 2023-12-03T06:15:43.941013: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 6:15:43 AM LogWriter2 run
+INFO: 2023-12-03T06:15:43.942517: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 6:16:59 AM LogWriter2 run
+INFO: 2023-12-03T06:16:59.209186: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 6:16:59 AM LogWriter2 run
+INFO: 2023-12-03T06:16:59.237263: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 6:16:59 AM LogWriter2 run
+INFO: 2023-12-03T06:16:59.238830: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 6:16:59 AM LogWriter2 run
+INFO: 2023-12-03T06:16:59.240273: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 6:16:59 AM LogWriter2 run
+INFO: 2023-12-03T06:16:59.241581: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 6:27:51 AM LogWriter2 run
+INFO: 2023-12-03T06:27:51.559660: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 6:27:51 AM LogWriter2 run
+INFO: 2023-12-03T06:27:51.609745: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 6:27:51 AM LogWriter2 run
+INFO: 2023-12-03T06:27:51.611308: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 6:27:51 AM LogWriter2 run
+INFO: 2023-12-03T06:27:51.612596: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 6:27:51 AM LogWriter2 run
+INFO: 2023-12-03T06:27:51.613944: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 6:29:58 AM LogWriter2 run
+INFO: 2023-12-03T06:29:58.575460: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 6:29:58 AM LogWriter2 run
+INFO: 2023-12-03T06:29:58.792036: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 6:29:58 AM LogWriter2 run
+INFO: 2023-12-03T06:29:58.794654: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 6:29:58 AM LogWriter2 run
+INFO: 2023-12-03T06:29:58.796560: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 6:29:58 AM LogWriter2 run
+INFO: 2023-12-03T06:29:58.797758: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 6:37:39 AM LogWriter2 run
+INFO: 2023-12-03T06:37:39.944037: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 6:37:39 AM LogWriter2 run
+INFO: 2023-12-03T06:37:39.979626: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 6:37:39 AM LogWriter2 run
+INFO: 2023-12-03T06:37:39.981207: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 6:37:39 AM LogWriter2 run
+INFO: 2023-12-03T06:37:39.982569: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 6:37:39 AM LogWriter2 run
+INFO: 2023-12-03T06:37:39.984060: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 6:41:56 AM LogWriter2 run
+INFO: 2023-12-03T06:41:56.436598: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 6:41:56 AM LogWriter2 run
+INFO: 2023-12-03T06:41:56.802513: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 6:41:56 AM LogWriter2 run
+INFO: 2023-12-03T06:41:56.805548: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 6:41:56 AM LogWriter2 run
+INFO: 2023-12-03T06:41:56.807165: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 6:41:56 AM LogWriter2 run
+INFO: 2023-12-03T06:41:56.808834: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 6:44:23 AM LogWriter2 run
+INFO: 2023-12-03T06:44:23.190592: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 6:44:23 AM LogWriter2 run
+INFO: 2023-12-03T06:44:23.564534: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 6:44:23 AM LogWriter2 run
+INFO: 2023-12-03T06:44:23.566825: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 6:44:23 AM LogWriter2 run
+INFO: 2023-12-03T06:44:23.568333: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 6:44:23 AM LogWriter2 run
+INFO: 2023-12-03T06:44:23.618331: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 7:15:14 AM LogWriter2 run
+INFO: 2023-12-03T07:15:14.201882: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 7:15:14 AM LogWriter2 run
+INFO: 2023-12-03T07:15:14.237826: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 7:15:14 AM LogWriter2 run
+INFO: 2023-12-03T07:15:14.239402: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 7:15:14 AM LogWriter2 run
+INFO: 2023-12-03T07:15:14.240925: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 7:15:14 AM LogWriter2 run
+INFO: 2023-12-03T07:15:14.242429: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 7:17:19 AM LogWriter2 run
+INFO: 2023-12-03T07:17:19.858734: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 7:17:19 AM LogWriter2 run
+INFO: 2023-12-03T07:17:19.895216: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 7:17:20 AM LogWriter2 run
+INFO: 2023-12-03T07:17:20.103813: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 7:17:20 AM LogWriter2 run
+INFO: 2023-12-03T07:17:20.110310: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 7:19:32 AM LogWriter2 run
+INFO: 2023-12-03T07:19:32.356507: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 7:19:32 AM LogWriter2 run
+INFO: 2023-12-03T07:19:32.681676: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 7:19:32 AM LogWriter2 run
+INFO: 2023-12-03T07:19:32.684091: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 7:19:32 AM LogWriter2 run
+INFO: 2023-12-03T07:19:32.686132: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 7:19:32 AM LogWriter2 run
+INFO: 2023-12-03T07:19:32.688926: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 7:26:19 AM LogWriter2 run
+INFO: 2023-12-03T07:26:19.609945: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 7:26:20 AM LogWriter2 run
+INFO: 2023-12-03T07:26:20.216880: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 7:26:20 AM LogWriter2 run
+INFO: 2023-12-03T07:26:20.218760: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 7:26:20 AM LogWriter2 run
+INFO: 2023-12-03T07:26:20.220405: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 7:26:20 AM LogWriter2 run
+INFO: 2023-12-03T07:26:20.222305: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 7:35:03 AM LogWriter2 run
+INFO: 2023-12-03T07:35:03.704426: Peer 1006 is connected from Peer 1004.
+Dec 03, 2023 7:35:04 AM LogWriter2 run
+INFO: 2023-12-03T07:35:04.098132: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 7:35:04 AM LogWriter2 run
+INFO: 2023-12-03T07:35:04.100009: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 7:35:04 AM LogWriter2 run
+INFO: 2023-12-03T07:35:04.101331: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 7:35:04 AM LogWriter2 run
+INFO: 2023-12-03T07:35:04.102635: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 7:37:08 AM LogWriter2 run
+INFO: 2023-12-03T07:37:08.579833: Peer 1006 is connected from Peer 1005.
+Dec 03, 2023 7:37:08 AM LogWriter2 run
+INFO: 2023-12-03T07:37:08.629311: Peer 1006 is connected from Peer 1002.
+Dec 03, 2023 7:37:08 AM LogWriter2 run
+INFO: 2023-12-03T07:37:08.630735: Peer 1006 is connected from Peer 1001.
+Dec 03, 2023 7:37:08 AM LogWriter2 run
+INFO: 2023-12-03T07:37:08.633335: Peer 1006 is connected from Peer 1003.
+Dec 03, 2023 7:37:08 AM LogWriter2 run
+INFO: 2023-12-03T07:37:08.636562: Peer 1006 is connected from Peer 1004.

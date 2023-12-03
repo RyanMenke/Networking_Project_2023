@@ -155,6 +155,7 @@ public class Client extends Thread {
                         self.updateImageFileData(index, pieceData);
                         if (self.checkIfHasCompleteFile()) {
                             FileReader.writeFile(self);
+                            sendMessage(Message.makeHasEntireFile().toBytes());
                         }
                         System.out.println("MY IMAGE DATA: " + self.getImageFileData());
 
