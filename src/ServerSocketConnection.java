@@ -95,11 +95,15 @@ public class ServerSocketConnection extends Thread {
                         System.out.println("Received INTERESTED");
                         serverInterface.clientIsInterested(clientPeerId);
                         canAcceptHave = true;
+
+                        LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " received the ‘interested’ message from " + clientPeerId + ".");
                         break;
                     case Message.NOT_INTERESTED:
                         System.out.println("Received NOT_INTERESTED");
                         serverInterface.clientIsNotInterested(clientPeerId);
                         canAcceptHave = true;
+
+                        LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " received the ‘not interested’ message from " + clientPeerId + ".");
                         break;
                     case Message.HAVE:
                         System.out.println("Received HAVE");

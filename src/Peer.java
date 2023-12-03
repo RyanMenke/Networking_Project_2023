@@ -157,6 +157,16 @@ public class Peer {
         return intArray;
     }
 
+    public int getNumberOfPiecesInPosession() {
+        int count = 0;
+        for (int i = 0; i < numberOfPieces; i++) {
+            if (bitfield.get(i)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     /**
      * We're interested in this peer if the peer has any pieces we don't have
      *

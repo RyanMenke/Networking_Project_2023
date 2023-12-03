@@ -75,10 +75,15 @@ public class Client extends Thread {
                     case Message.CHOKE:
                         isChokedByServer = true;
                         System.out.println("Received CHOKE");
+
+                        //writing log
+                        LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " is choked by " + peer.getPeerId() + ".");
                         break;
                     case Message.UN_CHOKE:
                         this.isChokedByServer = false;
                         System.out.println("Received UN_CHOKE");
+                        //writing the log
+                        LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " is unchoked by " + peer.getPeerId() + ".");
                         if (selfIsInterested) {
                             indexList = self.getListOfInterestedIndexesFromBitset(serverBitSet);
                             Collections.shuffle(indexList);
@@ -104,6 +109,9 @@ public class Client extends Thread {
 //                        boolean doesPeerHaveIndex = self.doesPeerHaveIndex(indexForHave);
                         serverBitSet.set(indexForHave);
                         indexList = self.getListOfInterestedIndexesFromBitset(serverBitSet);
+
+                        //write log
+                        LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " received the ‘have’ message from " + peer.getPeerId() + " for the piece " + indexForHave + ".");
                         if (indexList.size() > 0) {
                             sendMessage(Message.makeInterested().toBytes());
                         }
@@ -153,9 +161,14 @@ public class Client extends Thread {
                         // Updating Clients internally stored data
                         self.updateBitfieldWithNewIndex(index);
                         self.updateImageFileData(index, pieceData);
+
+                        //write log
+                        LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " has downloaded the piece " + index + " from " + peer.getPeerId() + ". Now the number of pieces it has is " + self.getNumberOfPiecesInPosession() + ".");
                         if (self.checkIfHasCompleteFile()) {
                             FileReader.writeFile(self);
                             sendMessage(Message.makeHasEntireFile().toBytes());
+
+                            LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " has downloaded the complete file.");
                         }
                         System.out.println("MY IMAGE DATA: " + self.getImageFileData());
 

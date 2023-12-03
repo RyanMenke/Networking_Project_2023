@@ -109,49 +109,16 @@ public class Server {
         }
     }
 
-//    private void checkForOptimisticUnchoke() {
-//        int interval = peer.getPeerConfig().getOptimisticUnchokingInterval();
-//        PeerConfiguration config = peer.getPeerConfig();
-//        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-//
-//        Runnable task = () -> {
-//            // Optimistic Unchoke code
-//            synchronized (peerStateMap) {
-//                if (peerStateMap.isEmpty()) {
-//                    return;
-//                }
-//                System.out.println("Am I even optimistically unchoking");
-//
-//                List<Integer> interestedNeighborKeys = new ArrayList<>();
-//                for (Map.Entry<Integer, PeerState> entry: peerStateMap.entrySet()) {
-//                    System.out.println("Optimistic Unchoking For loop PeerId: "  + entry.getKey());
-//                    System.out.println("Is "  + entry.getKey() + " interested? " + entry.getValue().isInterested());
-//                    if (entry.getValue().isOptimisticallyUnchoked()) {
-//                        peerStateMap.get(interestedNeighborKeys.get(0)).setChoked(true);
-//                        peerStateMap.get(interestedNeighborKeys.get(0)).setOptimisticallyUnchoked(false);
-//                    }
-//
-//                    if (entry.getValue().isInterested() && !entry.getValue().isChoked()) {
-//                        System.out.println("I adding to the optimistic choking list with this peerID: " + entry.getKey());
-//                        interestedNeighborKeys.add(entry.getKey());
-//                    }
-//                }
-//                if (interestedNeighborKeys.size() > 0) {
-//                    Collections.shuffle(interestedNeighborKeys);
-//                    System.out.println("Optimistic Unchoking winner! Is this peerID: " + interestedNeighborKeys.get(0));
-//                    peerStateMap.get(interestedNeighborKeys.get(0)).setChoked(false);
-//                    peerStateMap.get(interestedNeighborKeys.get(0)).setOptimisticallyUnchoked(true);
-//                }
-//                System.out.println("Interested Neighbor Keys: " + interestedNeighborKeys.size());
-//                sendChokeAndUnchokeMessages();
-//                System.out.println("Running at intervals... (optimistic)");
-//            }
-//            // Only optimistically unchoke if Peer has the entire file.
-//        };
-//
-//
-//        executor.scheduleAtFixedRate(task, interval, interval, TimeUnit.SECONDS);
-//    }
+    public boolean checkIfAllPeersAndSelfHaveFile() {
+        boolean allPeersHaveFile = false;
+        boolean selfHasFile = peer.hasFile();
+        for (Map.Entry<Integer, PeerState> entry: peerStateMap.entrySet()) {
+            if (!entry.getValue().hasCompleteFile()) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     private void checkForOptimisticUnchoke() {
         int interval = peer.getPeerConfig().getOptimisticUnchokingInterval();
@@ -172,7 +139,7 @@ public class Server {
                     System.out.println("Optimistic Unchoking For loop PeerId: "  + entry.getKey());
                     System.out.println("Is "  + entry.getKey() + " interested? " + entry.getValue().isInterested());
                     if (entry.getValue().isOptimisticallyUnchoked()) {
-                        entry.getValue().setChoked(true);
+                        //entry.getValue().setChoked(true);
                         entry.getValue().setOptimisticallyUnchoked(false);
                     }
 
@@ -186,8 +153,16 @@ public class Server {
                 if (interestedNeighborKeys.size() > 0) {
                     Collections.shuffle(interestedNeighborKeys);
                     System.out.println("Optimistic Unchoking winner! Is this peerID: " + interestedNeighborKeys.get(0));
-                    peerStateMap.get(interestedNeighborKeys.get(0)).setChoked(false);
+                    //peerStateMap.get(interestedNeighborKeys.get(0)).setChoked(false);
                     peerStateMap.get(interestedNeighborKeys.get(0)).setOptimisticallyUnchoked(true);
+
+                    try {
+                        LogWriter2.getInstance(peer).writeLog("Peer " + peer.getPeerId() + " has the optimistically unchoked neighbor " + interestedNeighborKeys.get(0) + ".");
+                    }
+                    catch (IOException e) {
+
+                    }
+
                 }
                 System.out.println("Interested Neighbor Keys: " + interestedNeighborKeys.size());
                 sendChokeAndUnchokeMessages();
@@ -240,21 +215,21 @@ public class Server {
         System.out.println("I am in reAssessNeighbors");
         for (Map.Entry<Integer, PeerState> entry: peerStateMap.entrySet()) {
             System.out.println("This is a peerID: " + entry.getKey());
-            if (!entry.getValue().isOptimisticallyUnchoked()) {
-                System.out.println("I am choking Temporarily this peerID: " + entry.getKey());
-                entry.getValue().setChoked(true);
-            }
-            if (entry.getValue().isInterested() && !entry.getValue().isOptimisticallyUnchoked()) {
+            System.out.println("I am choking Temporarily this peerID: " + entry.getKey());
+            entry.getValue().setChoked(true);
+            if (entry.getValue().isInterested()) {
                 System.out.println("I made it inside the interested key zone with this peerID: " + entry.getKey());
                 interestedNeighborKeys.add(entry.getKey());
                 System.out.println("Adding interested Neighbor key to list: " + entry.getKey());
             }
         }
 
+        ArrayList<Integer> listForLog = new ArrayList<>();
         if (interestedNeighborKeys.size() <= peer.getPeerConfig().getNumberOfPreferredNeighbors()) {
             System.out.println("Am I reaching the code for SMALL neighbors");
             for (int key: interestedNeighborKeys) {
                 if (peerStateMap.get(key).isInterested()) {
+                    listForLog.add(key);
                     peerStateMap.get(key).setChoked(false);
                     System.out.println(peerStateMap.get(key).isChoked());
                 }
@@ -263,22 +238,30 @@ public class Server {
         else {
             Collections.shuffle(interestedNeighborKeys);
             for (int i = 0; i < peer.getPeerConfig().getNumberOfPreferredNeighbors(); i++) {
+                listForLog.add(interestedNeighborKeys.get(i));
                 peerStateMap.get(interestedNeighborKeys.get(i)).setChoked(false);
             }
         }
+
+        if (listForLog.size() > 0) {
+            try {
+                LogWriter2.getInstance(peer).writeLog("Peer " + peer.getPeerId() + " has the preferred neighbors " + listForLog.toString() + ".");
+            } catch (IOException e) {
+
+            }
+        }
+
     }
 
     private void reAssessNeighborsByThroughput() {
         List<Integer> interestedNeighborKeys = new ArrayList<>();
         ArrayList<Map.Entry<Integer, Integer>> peerIDAndBytesReceivedEntrySet = createSortedThroughputMap();
-
+        ArrayList<Integer> listForLog = new ArrayList<>();
 
         for (Map.Entry<Integer, PeerState> entry: peerStateMap.entrySet()) {
-            if (!entry.getValue().isOptimisticallyUnchoked()) {
-                System.out.println("THROUGHPUT");
-                entry.getValue().setChoked(true);
-            }
-            if (entry.getValue().isInterested() && !entry.getValue().isOptimisticallyUnchoked()) {
+            System.out.println("THROUGHPUT");
+            entry.getValue().setChoked(true);
+            if (entry.getValue().isInterested()) {
                 System.out.println("I made it inside the interested key zone with this peerID: " + entry.getKey());
                 interestedNeighborKeys.add(entry.getKey());
 
@@ -292,6 +275,7 @@ public class Server {
                 if (peerStateMap.get(key).isInterested()) {
                     peerStateMap.get(key).setChoked(false);
                     System.out.println(peerStateMap.get(key).isChoked());
+                    listForLog.add(key);
                 }
             }
         }
@@ -299,11 +283,20 @@ public class Server {
             for (int i = 0; i < peer.getPeerConfig().getNumberOfPreferredNeighbors(); i++) {
 //                peerStateMap.get(interestedNeighborKeys.get(i)).setChoked(false);
                 peerStateMap.get(peerIDAndBytesReceivedEntrySet.get(i).getKey()).setChoked(false);
+                listForLog.add(peerIDAndBytesReceivedEntrySet.get(i).getKey());
             }
         }
 
         for (Map.Entry<Integer, PeerState> entry: peerStateMap.entrySet()) {
             entry.getValue().setNumberOfBitsInterval(0);
+        }
+
+        if (listForLog.size() > 0) {
+            try {
+                LogWriter2.getInstance(peer).writeLog("Peer " + peer.getPeerId() + " has the preferred neighbors " + listForLog.toString() + ".");
+            } catch (IOException e) {
+
+            }
         }
     }
 
@@ -338,7 +331,7 @@ public class Server {
             if (state != null) {
                 System.out.println("This is the state of interest: " + state.isInterested());
                 System.out.println("This is the state of Choking: " + state.isChoked());
-                if (state.isChoked()) {
+                if (state.isChoked() && !state.isOptimisticallyUnchoked()) {
                     System.out.println("Am I reaching this choking message code");
                     connection.sendChoke();
                 } else {

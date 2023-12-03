@@ -46,7 +46,9 @@ public class LogWriter2 extends Thread {
     }
 
     public void writeLog(String log) {
-        this.queue.add(log);
+        LocalDateTime timeOfConnection = LocalDateTime.now();
+        String finalLog = ("" + timeOfConnection + ": " + log);
+        this.queue.add(finalLog);
     }
 
     @Override
@@ -54,8 +56,8 @@ public class LogWriter2 extends Thread {
         while (true) {
             try {
                 String log = queue.take();
-                LocalDateTime timeOfConnection = LocalDateTime.now();
-                this.logger.info(timeOfConnection + ": " + log);
+                //LocalDateTime timeOfConnection = LocalDateTime.now();
+                this.logger.info( log);
             } catch (InterruptedException e) {
                 break;
             }

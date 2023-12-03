@@ -9,19 +9,12 @@
       <change beforePath="$PROJECT_DIR$/project/log_1004.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1004.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/log_1005.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1005.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/log_1006.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1006.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Message.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Peer.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Peer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LogWriter2.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/LogWriter2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LogWriter2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LogWriter2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Peer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Peer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PeerState.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeerState.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PeerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeerState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ServerSocketConnection$ConnectedClientInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerSocketConnection$ConnectedClientInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ServerSocketConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerSocketConnection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ServerSocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerSocketConnection.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -120,7 +113,7 @@
       <workItem from="1698173149420" duration="501000" />
       <workItem from="1698175748490" duration="13776000" />
       <workItem from="1700942583468" duration="23000" />
-      <workItem from="1700942703625" duration="117588000" />
+      <workItem from="1700942703625" duration="121821000" />
     </task>
     <servers />
   </component>
