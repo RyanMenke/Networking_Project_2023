@@ -1,0 +1,60 @@
+Dec 03, 2023 11:07:40 PM LogWriter2 run
+INFO: 2023-12-03T23:07:40.448572: Peer 1001 makes a connection to Peer 1002.
+Dec 03, 2023 11:07:40 PM LogWriter2 run
+INFO: 2023-12-03T23:07:40.600719: Peer 1001 received the ‘interested’ message from 1002.
+Dec 03, 2023 11:07:42 PM LogWriter2 run
+INFO: 2023-12-03T23:07:42.437342: Peer 1001 has the preferred neighbors [1002].
+Dec 03, 2023 11:07:47 PM LogWriter2 run
+INFO: 2023-12-03T23:07:47.420203: Peer 1001 has the preferred neighbors [1002].
+Dec 03, 2023 11:07:47 PM LogWriter2 run
+INFO: 2023-12-03T23:07:47.441433: Peer 1001 has the optimistically unchoked neighbor 1002.
+Dec 03, 2023 11:07:57 PM LogWriter2 run
+INFO: 2023-12-03T23:07:57.996145: Peer 1001 makes a connection to Peer 1003.
+Dec 03, 2023 11:07:58 PM LogWriter2 run
+INFO: 2023-12-03T23:07:58.330710: Peer 1001 received the ‘interested’ message from 1003.
+Dec 03, 2023 11:08:02 PM LogWriter2 run
+INFO: 2023-12-03T23:08:02.421133: Peer 1001 has the preferred neighbors [1003].
+Dec 03, 2023 11:08:07 PM LogWriter2 run
+INFO: 2023-12-03T23:08:07.420413: Peer 1001 has the preferred neighbors [1003].
+Dec 03, 2023 11:08:07 PM LogWriter2 run
+INFO: 2023-12-03T23:08:07.564602: Peer 1001 has the optimistically unchoked neighbor 1003.
+Dec 03, 2023 11:08:15 PM LogWriter2 run
+INFO: 2023-12-03T23:08:15.979563: Peer 1001 makes a connection to Peer 1004.
+Dec 03, 2023 11:08:16 PM LogWriter2 run
+INFO: 2023-12-03T23:08:16.064819: Peer 1001 received the ‘interested’ message from 1004.
+Dec 03, 2023 11:08:17 PM LogWriter2 run
+INFO: 2023-12-03T23:08:17.421425: Peer 1001 has the preferred neighbors [1004].
+Dec 03, 2023 11:08:17 PM LogWriter2 run
+INFO: 2023-12-03T23:08:17.423181: Peer 1001 has the optimistically unchoked neighbor 1004.
+Dec 03, 2023 11:08:22 PM LogWriter2 run
+INFO: 2023-12-03T23:08:22.421700: Peer 1001 has the preferred neighbors [1004].
+Dec 03, 2023 11:08:27 PM LogWriter2 run
+INFO: 2023-12-03T23:08:27.420814: Peer 1001 has the preferred neighbors [1004].
+Dec 03, 2023 11:08:27 PM LogWriter2 run
+INFO: 2023-12-03T23:08:27.424813: Peer 1001 has the optimistically unchoked neighbor 1004.
+Dec 03, 2023 11:08:40 PM LogWriter2 run
+INFO: 2023-12-03T23:08:40.470451: Peer 1001 makes a connection to Peer 1005.
+Dec 03, 2023 11:08:40 PM LogWriter2 run
+INFO: 2023-12-03T23:08:40.563706: Peer 1001 received the ‘interested’ message from 1005.
+Dec 03, 2023 11:08:42 PM LogWriter2 run
+INFO: 2023-12-03T23:08:42.419261: Peer 1001 has the preferred neighbors [1005].
+Dec 03, 2023 11:08:46 PM LogWriter2 run
+INFO: 2023-12-03T23:08:46.127754: Peer 1001 makes a connection to Peer 1006.
+Dec 03, 2023 11:08:47 PM LogWriter2 run
+INFO: 2023-12-03T23:08:47.360824: Peer 1001 received the ‘interested’ message from 1006.
+Dec 03, 2023 11:08:47 PM LogWriter2 run
+INFO: 2023-12-03T23:08:47.420455: Peer 1001 has the preferred neighbors [1005, 1006].
+Dec 03, 2023 11:08:47 PM LogWriter2 run
+INFO: 2023-12-03T23:08:47.422766: Peer 1001 has the optimistically unchoked neighbor 1006.
+Dec 03, 2023 11:08:52 PM LogWriter2 run
+INFO: 2023-12-03T23:08:52.421743: Peer 1001 has the preferred neighbors [1005, 1006].
+Dec 03, 2023 11:08:57 PM LogWriter2 run
+INFO: 2023-12-03T23:08:57.420942: Peer 1001 has the preferred neighbors [1005, 1006].
+Dec 03, 2023 11:08:57 PM LogWriter2 run
+INFO: 2023-12-03T23:08:57.423082: Peer 1001 has the optimistically unchoked neighbor 1005.
+Dec 03, 2023 11:09:02 PM LogWriter2 run
+INFO: 2023-12-03T23:09:02.421939: Peer 1001 has the preferred neighbors [1005, 1006].
+Dec 03, 2023 11:09:07 PM LogWriter2 run
+INFO: 2023-12-03T23:09:07.428293: Peer 1001 has the preferred neighbors [1006].
+Dec 03, 2023 11:09:07 PM LogWriter2 run
+INFO: 2023-12-03T23:09:07.442620: Peer 1001 has the optimistically unchoked neighbor 1006.

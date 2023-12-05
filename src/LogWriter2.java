@@ -13,10 +13,12 @@ public class LogWriter2 extends Thread {
     private Logger logger;
 
     private LogWriter2(Peer peer) throws IOException {
+        String currentWorkingDirectory = System.getProperty("user.dir");
+
         this.peer = peer;
         this.queue = new LinkedBlockingQueue<>();
         FileHandler fileHandler = new FileHandler(
-                "../project/log_" + peer.getPeerId() + ".log",
+                currentWorkingDirectory + "/log_" + peer.getPeerId() + ".log",
                 0,
                 1,
                 true

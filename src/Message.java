@@ -83,18 +83,18 @@ public class Message {
      * @throws IOException
      */
     public static Message fromInputStream(InputStream input) throws IOException {
-        System.out.println("Received message of length " + input.available());
+        //System.out.println("Received message of length " + input.available());
         byte[] length = new byte[4];
         input.read(length, 0, 4);
         int messageLength = ByteBuffer.wrap(length).getInt();
-        System.out.println("The content of the message is " + messageLength + " bytes");
+        //System.out.println("The content of the message is " + messageLength + " bytes");
 
         byte[] messageType = new byte[1];
 
-        System.out.println("About to read message type - input length is " + input.available());
+        //System.out.println("About to read message type - input length is " + input.available());
         input.read(messageType, 0, 1);
         int type = messageType[0] & 0xFF;
-        System.out.println("message type " + type);
+        //System.out.println("message type " + type);
 
         byte[] content = new byte[messageLength];
         input.read(content, 0, messageLength);

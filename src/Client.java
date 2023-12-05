@@ -48,17 +48,17 @@ public class Client extends Thread {
 
     public void run() {
         try{
-            System.out.println("RUNNING Aaaaaaaaaaaaaaaaaaaaa");
+            //System.out.println("RUNNING Aaaaaaaaaaaaaaaaaaaaa");
             //create a socket to connect to the server
             requestSocket = new Socket(peer.getHostName(), peer.getPortNumber());
-            System.out.println("Connected to " + peer.getHostName() + " on port " + peer.getPortNumber());
+            //System.out.println("Connected to " + peer.getHostName() + " on port " + peer.getPortNumber());
             //initialize inputStream and outputStream
             out = requestSocket.getOutputStream();
             out.flush();
             in = requestSocket.getInputStream();
 
             if (!doHandshake(in)) {
-                System.out.println("Failed to complete handshake (Client)");
+                //System.out.println("Failed to complete handshake (Client)");
                 return;
             }
 
@@ -69,7 +69,7 @@ public class Client extends Thread {
 //            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             while(true)
             {
-                if (!self.checkIfHasCompleteFile()) {
+                //if (!self.hasFile()) {
                     while (in.available() == 0) {
                     }
                     Message message = Message.fromInputStream(in);
@@ -77,31 +77,37 @@ public class Client extends Thread {
                         case Message.CHOKE:
                             if (self.checkIfHasCompleteFile()) {
                                 sendMessage(Message.makeHasEntireFile().toBytes());
+                                if (!requestSocket.isClosed()) {
+                                    requestSocket.close();
+                                }
                             }
                             else {
 
 
                                 isChokedByServer = true;
-                                System.out.println("Received CHOKE");
+                                //System.out.println("Received CHOKE");
 
                                 //writing log
                                 LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " is choked by " + peer.getPeerId() + ".");
                             }
                             break;
                         case Message.UN_CHOKE:
-                            if (self.checkIfHasCompleteFile()) {
+                            if (self.hasFile()) {
                                 sendMessage(Message.makeHasEntireFile().toBytes());
+                                if (!requestSocket.isClosed()) {
+                                    requestSocket.close();
+                                }
 
                             }
                             else {
                                 this.isChokedByServer = false;
-                                System.out.println("Received UN_CHOKE");
+                                //System.out.println("Received UN_CHOKE");
                                 //writing the log
                                 LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " is unchoked by " + peer.getPeerId() + ".");
                                 if (selfIsInterested) {
                                     indexList = self.getListOfInterestedIndexesFromBitset(serverBitSet);
                                     Collections.shuffle(indexList);
-                                    System.out.println("Inside UNCHOKE the chosen base index is: " + indexList.get(0));
+                                    //System.out.println("Inside UNCHOKE the chosen base index is: " + indexList.get(0));
                                     byte[] byteArray = ByteBuffer.allocate(Integer.BYTES).putInt(indexList.get(0)).array();
                                     sendMessage(Message.makeRequest(byteArray).toBytes());
                                 } else {
@@ -110,20 +116,35 @@ public class Client extends Thread {
                             }
                             break;
                         case Message.INTERESTED:
-                            System.out.println("Received INTERESTED");
+                            if (self.hasFile()) {
+                                sendMessage(Message.makeHasEntireFile().toBytes());
+                                if (!requestSocket.isClosed()) {
+                                    requestSocket.close();
+                                }
+                            }
+                            //System.out.println("Received INTERESTED");
                             break;
                         case Message.NOT_INTERESTED:
-                            System.out.println("Received NOT_INTERESTED");
+                            if (self.hasFile()) {
+                                sendMessage(Message.makeHasEntireFile().toBytes());
+                                if (!requestSocket.isClosed()) {
+                                    requestSocket.close();
+                                }
+                            }
+                            //System.out.println("Received NOT_INTERESTED");
                             break;
                         case Message.HAVE:
-                            System.out.println("Received HAVE");
-                            if (self.checkIfHasCompleteFile()) {
+                            //System.out.println("Received HAVE");
+                            if (self.hasFile()) {
                                 sendMessage(Message.makeHasEntireFile().toBytes());
+                                if (!requestSocket.isClosed()) {
+                                    requestSocket.close();
+                                }
                             }
                             else {
                                 byte[] haveIndex = message.getContent();
                                 int indexForHave = ByteBuffer.wrap(haveIndex, 0, Integer.BYTES).getInt();
-                                System.out.println("When receiving a request the index is: " + indexForHave);
+                                //System.out.println("When receiving a request the index is: " + indexForHave);
 //                        boolean doesPeerHaveIndex = self.doesPeerHaveIndex(indexForHave);
                                 serverBitSet.set(indexForHave);
                                 indexList = self.getListOfInterestedIndexesFromBitset(serverBitSet);
@@ -138,43 +159,43 @@ public class Client extends Thread {
 
                             break;
                         case Message.BIT_FIELD:
-                            System.out.println("Received BIT_FIELD");
+                            //System.out.println("Received BIT_FIELD");
                             Bitfield serversBitfield = Bitfield.fromMessage(message);
                             serverBitSet = serversBitfield.getBitset();
-                            System.out.println("SERVER BITSET FINAL INDEX: " + serverBitSet.get(1487));
+                            //System.out.println("SERVER BITSET FINAL INDEX: " + serverBitSet.get(1487));
                             //serverBitSet = ByteConverter.byteArrayToBitSet(message.getContent());
-                            System.out.println("SERVER BITSET LENGTH: " + serverBitSet.length());
-                            System.out.println("SERVER BITSET FINAL INDEX: " + serverBitSet.get(1487));
+                            //System.out.println("SERVER BITSET LENGTH: " + serverBitSet.length());
+                            //System.out.println("SERVER BITSET FINAL INDEX: " + serverBitSet.get(1487));
                             this.iHaveShakenHands = true;
                             if (self.isInterestedInPeer(serversBitfield.getBitset())) {
                                 // handling the interested case.
                                 indexList = self.getListOfInterestedIndexesFromBitset(serversBitfield.getBitset());
                                 this.serverBitSet = serversBitfield.getBitset();
-                                System.out.println("This is the length of the Index List for requests: " + indexList.size());
+                                //System.out.println("This is the length of the Index List for requests: " + indexList.size());
                                 selfIsInterested = true;
                                 sendMessage(Message.makeInterested().toBytes());
                                 // Send the interested message
-                                System.out.print("Interested sent (Client)");
+                                //System.out.print("Interested sent (Client)");
                             } else {
                                 // handling the "not interested" case
                                 selfIsInterested = false;
                                 sendMessage(Message.makeNotInterested().toBytes());
-                                System.out.print("notInterested sent (Client)");
+                                //System.out.print("notInterested sent (Client)");
                             }
                             break;
                         case Message.REQUEST:
-                            System.out.println("Received REQUEST");
+                            //System.out.println("Received REQUEST");
                             break;
                         case Message.PIECE:
-                            System.out.println("Received PIECE");
+                            //System.out.println("Received PIECE");
                             ByteBuffer byteBuffer = ByteBuffer.wrap(message.getContent(), 0, Integer.BYTES);
 
                             // Read the int value from the ByteBuffer
                             int index = byteBuffer.getInt();
                             byte[] pieceData = new byte[message.getContent().length - 4];
                             System.arraycopy(message.getContent(), 4, pieceData, 0, pieceData.length);
-                            System.out.println("The length of the Piece I am receiving is: " + pieceData.length);
-                            System.out.println("The index of the Piece I am receiving is: " + index);
+                            //System.out.println("The length of the Piece I am receiving is: " + pieceData.length);
+                            //System.out.println("The index of the Piece I am receiving is: " + index);
 
                             // Updating Clients internally stored data
                             self.updateBitfieldWithNewIndex(index);
@@ -183,15 +204,16 @@ public class Client extends Thread {
                             //write log
                             LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " has downloaded the piece " + index + " from " + peer.getPeerId() + ". Now the number of pieces it has is " + self.getNumberOfPiecesInPosession() + ".");
                             if (self.checkIfHasCompleteFile()) {
-                                FileReader.writeFile(self);
+                                PeerFileReader.writeFile(self);
                                 sendMessage(Message.makeHasEntireFile().toBytes());
 
                                 LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " has downloaded the complete file.");
 
                                 //close the clients connection
                                 closeClient();
+                                break;
                             }
-                            System.out.println("MY IMAGE DATA: " + self.getImageFileData());
+                            //System.out.println("MY IMAGE DATA: " + self.getImageFileData());
 
                             // Sending message to server that piece has been received
                             eventEmitter.pieceReceived(index);
@@ -205,7 +227,7 @@ public class Client extends Thread {
 
                             break;
                     }
-                }
+                //}
             }
         }
         catch (ConnectException e) {
@@ -215,13 +237,13 @@ public class Client extends Thread {
             System.err.println("You are trying to connect to an unknown host!");
         }
         catch(IOException ioException){
-            ioException.printStackTrace();
+            //ioException.printStackTrace();
         }
         finally{
             //Close connections
 //            try{
 //                // TODO: THIS MUST CLOSE AT SOME POINT
-//                System.out.println("CLIENT CLOSING SERVER CONNECTION");
+//                //System.out.println("CLIENT CLOSING SERVER CONNECTION");
 //                in.close();
 //                out.close();
 //                requestSocket.close();
@@ -233,7 +255,7 @@ public class Client extends Thread {
     }
     public void closeClient() {
         try{
-                System.out.println("CLIENT CLOSING SERVER CONNECTION");
+                //System.out.println("CLIENT CLOSING SERVER CONNECTION");
                 in.close();
                 out.close();
                 requestSocket.close();
@@ -247,11 +269,11 @@ public class Client extends Thread {
         if (indexList.size() < 1) {
             sendMessage(Message.makeNotInterested().toBytes());
             selfIsInterested = false;
-            System.out.println("The final size of the image data is: " + self.getImageFileData().length);
+            //System.out.println("The final size of the image data is: " + self.getImageFileData().length);
         }
         else if (!isChokedByServer){
             Collections.shuffle(indexList);
-            System.out.println("Inside UNCHOKE the chosen base index is: " + indexList.get(0));
+            //System.out.println("Inside UNCHOKE the chosen base index is: " + indexList.get(0));
             byte[] byteArray = ByteBuffer.allocate(Integer.BYTES).putInt(indexList.get(0)).array();
             sendMessage(Message.makeRequest(byteArray).toBytes());
         }
@@ -273,22 +295,22 @@ public class Client extends Thread {
     private boolean doHandshake(InputStream input) {
         try {
             Handshake clientHandshake = new Handshake(clientId);
-            System.out.println("Attempting to send handshake to server");
+            //System.out.println("Attempting to send handshake to server");
             byte[] handshake = clientHandshake.toBytes();
-            System.out.println("Sending " + handshake.length + " handshake bytes");
+            //System.out.println("Sending " + handshake.length + " handshake bytes");
             sendMessage(handshake);
-            System.out.println("sent message to server");
+            //System.out.println("sent message to server");
 
             // Verify the handshake from the server.
             // TODO: Do we need to do any additional verification from the server?
             Handshake serverHandshake = Handshake.fromInputStream(input);
-            System.out.println("Received server handshake");
+            //System.out.println("Received server handshake");
 
             LogWriter2.getInstance(self).writeLog("Peer "+ self.getPeerId() + " is connected from Peer "+peer.getPeerId()+".");
             //LogWriter.TCPMakeConnection(self.getPeerId(), peer.getPeerId());
             return true;
         } catch (Exception e) {
-            System.out.println("Handshake failed ");
+            //System.out.println("Handshake failed ");
             e.printStackTrace();
             return false;
         }

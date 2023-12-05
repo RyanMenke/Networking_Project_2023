@@ -12,7 +12,7 @@ public class Peer {
     private int peerId;
     private String hostName;
     private int portNumber;
-    private boolean hasFile;
+    private volatile boolean hasFile;
 
     private int numberOfClientsThatShouldConnect;
 
@@ -27,7 +27,7 @@ public class Peer {
 
     // memory stored internally in each peer
     // gives a representation of the pieces stored, used to determine what pieces are missing
-    private BitSet bitfield;
+    private volatile BitSet bitfield;
 
 
     //connection variables
@@ -61,7 +61,7 @@ public class Peer {
     // TODO: ensure that the bitfield is divisible by 8, as it is measured in bytes
     public void setNumberOfPieces(int numberOfPieces) {
 
-        //System.out.println("BITFIELD: " + bitfield.length() + ", size: " + bitfield.size() + ", " + bitfield.cardinality());
+        ////System.out.println("BITFIELD: " + bitfield.length() + ", size: " + bitfield.size() + ", " + bitfield.cardinality());
 
         this.numberOfPieces = numberOfPieces;
         int bitfieldSize = numberOfPieces;
@@ -69,15 +69,14 @@ public class Peer {
             int remainder = numberOfPieces % 8;
             int ammountToAdd = 8 - remainder;
             bitfieldSize += ammountToAdd;
-            System.out.println(bitfieldSize);
-            System.out.println("NUMBEROFPIECES: " + numberOfPieces + ", ammount to add: " + ammountToAdd + ", "
-            + remainder);
+            //System.out.println(bitfieldSize);
+            //System.out.println("NUMBEROFPIECES: " + numberOfPieces + ", ammount to add: " + ammountToAdd + ", "+ remainder);
         }
 
         // Initialize a bitset where all bits are set to 0
         bitfield = new BitSet(numberOfPieces);
-        System.out.println("NUMBEROFPIECES: " + numberOfPieces + ", ammount to add: " + bitfieldSize);
-        System.out.println("BITFIELD: " + bitfield.length() + ", size: " + bitfield.size() + ", " + bitfield.cardinality());
+        //System.out.println("NUMBEROFPIECES: " + numberOfPieces + ", ammount to add: " + bitfieldSize);
+        //System.out.println("BITFIELD: " + bitfield.length() + ", size: " + bitfield.size() + ", " + bitfield.cardinality());
 
         if (hasFile) {
             for (int i = 0; i < numberOfPieces; i++) {
@@ -85,7 +84,7 @@ public class Peer {
             }
         }
 
-        System.out.println("BITFIELD: " + bitfield.length() + ", size: " + bitfield.size() + ", " + bitfield.cardinality());
+        //System.out.println("BITFIELD: " + bitfield.length() + ", size: " + bitfield.size() + ", " + bitfield.cardinality());
 
     }
 
@@ -118,12 +117,12 @@ public class Peer {
     }
 
     public void printContents() {
-        System.out.println("");
-        System.out.println(peerId);
-        System.out.println(hostName);
-        System.out.println(portNumber);
-        System.out.println(hasFile);
-        System.out.println("");
+        //System.out.println("");
+        //System.out.println(peerId);
+        //System.out.println(hostName);
+        //System.out.println(portNumber);
+        //System.out.println(hasFile);
+        //System.out.println("");
     }
 
     public int getPeerId() {
@@ -190,7 +189,7 @@ public class Peer {
 
         for (int index: zeroBitIndexes) {
             if (peerBitset.get(index)) {
-//                System.out.println("BITSET SIZE: " + index);
+//                //System.out.println("BITSET SIZE: " + index);
                 return true;
             }
         }
@@ -202,22 +201,22 @@ public class Peer {
         ArrayList<Integer> indexList = new ArrayList<>();
         for (int i = 0; i < foreignBitset.length(); i++) {
             if (foreignBitset.get(i) && !this.bitfield.get(i)) {
-                //System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAA");
+                ////System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAA");
                 indexList.add(i);
             }
         }
-        System.out.println("Index list length: " + indexList.size());
+        //System.out.println("Index list length: " + indexList.size());
         return indexList;
     }
 
     private int[] zeroBitIndexes() {
-        System.out.println("BITSET SIZE: " + bitfield.length() + ", " + bitfield.size() + ", " + bitfield.cardinality());
+        //System.out.println("BITSET SIZE: " + bitfield.length() + ", " + bitfield.size() + ", " + bitfield.cardinality());
         //int numZeroBits = bitfield.size() - bitfield.cardinality();
         ArrayList<Integer> arrayToBeCopied = new ArrayList<>();
 
 
         for (int i = 0; i < numberOfPieces; i++) {
-//            System.out.println("BITSET SIZE: " + bitfield.get(i));
+//            //System.out.println("BITSET SIZE: " + bitfield.get(i));
             if (!bitfield.get(i)) {
                 arrayToBeCopied.add(i);
             }
@@ -238,15 +237,15 @@ public class Peer {
 
         boolean isFirstBool = index == (numberOfPieces);
         boolean isSecondBool = peerConfig.getFileSize() % pieceSize != 0;
-//        System.out.println("Inside getPieceFromIndex the base index calculated is: " + offset);
-//        System.out.println("Inside getPieceFromIndex the index is: " + index);
-//        System.out.println("Inside getPieceFromIndex is the first bool true?: " + isFirstBool);
-//        System.out.println("Inside getPieceFromIndex is the second bool true?: " + isSecondBool);
+//        //System.out.println("Inside getPieceFromIndex the base index calculated is: " + offset);
+//        //System.out.println("Inside getPieceFromIndex the index is: " + index);
+//        //System.out.println("Inside getPieceFromIndex is the first bool true?: " + isFirstBool);
+//        //System.out.println("Inside getPieceFromIndex is the second bool true?: " + isSecondBool);
 
         if (index == (numberOfPieces - 1) && peerConfig.getFileSize() % pieceSize != 0) {
             pieceSize = peerConfig.getFileSize() % pieceSize;
-            System.out.println("THIS IS THE FINAL INDEX PIECE SIZE: " + pieceSize);
-            System.out.println("THIS IS THE FINAL INDEX OFFSET SIZE: " + offset);
+            //System.out.println("THIS IS THE FINAL INDEX PIECE SIZE: " + pieceSize);
+            //System.out.println("THIS IS THE FINAL INDEX OFFSET SIZE: " + offset);
         }
         byte[] pieceArray = new byte[pieceSize];
 
@@ -256,11 +255,11 @@ public class Peer {
     }
 
     public static void printByteArray(byte[] input) {
-        System.out.println("====== PRINTING BYTE ARRAY =======");
+        //System.out.println("====== PRINTING BYTE ARRAY =======");
         for (byte b: input) {
-            System.out.print(b + " ");
+            //System.out.print(b + " ");
         }
-        System.out.println("====== END PRINTING BYTE ARRAY =======");
+        //System.out.println("====== END PRINTING BYTE ARRAY =======");
     }
 
     public void updateBitfieldWithNewIndex(int index) {
@@ -276,9 +275,9 @@ public class Peer {
 
     public void updateImageFileData(int index, byte[] data) {
         int newIndex = index * peerConfig.getPieceSize();
-        System.out.println("IMAGE DATA BEFORE UPDATE: " + imageFileData[index]);
+        //System.out.println("IMAGE DATA BEFORE UPDATE: " + imageFileData[index]);
         System.arraycopy(data, 0 , imageFileData, newIndex, data.length);
-        System.out.println("IMAGE DATA AFTER UPDATE: " + imageFileData[index]);
+        //System.out.println("IMAGE DATA AFTER UPDATE: " + imageFileData[index]);
     }
 
     public boolean checkIfHasCompleteFile() {

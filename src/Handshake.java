@@ -27,13 +27,13 @@ public class Handshake {
      * @throws IllegalArgumentException
      */
     public static Handshake fromBytes(byte[] input) throws IllegalArgumentException {
-        System.out.println("Handshake received input of length " + input.length);
+        //System.out.println("Handshake received input of length " + input.length);
         ByteBuffer message = ByteBuffer.wrap(input);
 
         byte[] header = new byte[18];
         message.get(header, 0, 18);
         String handshakeHeader = new String(header, StandardCharsets.UTF_8);
-        System.out.println(handshakeHeader);
+        //System.out.println(handshakeHeader);
 
         if (!handshakeHeader.equals(HANDSHAKE_HEADER)) {
             throw new IllegalArgumentException("Invalid header passed to handshake " + handshakeHeader + " here");
@@ -42,21 +42,21 @@ public class Handshake {
         byte[] padding = new byte[10];
         message.position(18);
         message.get(padding, 0, 10);
-        System.out.println("Padding " + new String(padding, StandardCharsets.UTF_8));
+        //System.out.println("Padding " + new String(padding, StandardCharsets.UTF_8));
 
         byte[] peerId = new byte[4];
         message.position(28);
         message.get(peerId, 0, 4);
         int peerIdentifier = ByteBuffer.wrap(peerId).getInt();
-        System.out.println("Peer id " + peerIdentifier);
+        //System.out.println("Peer id " + peerIdentifier);
 
         return new Handshake(peerIdentifier);
     }
 
     public static Handshake fromInputStream(InputStream input) throws IOException {
-        System.out.println("About to read handshake bytes");
+        //System.out.println("About to read handshake bytes");
         while (input.available() < TOTAL_BYTES) {}
-        System.out.println("Bytes available " + input.available());
+        //System.out.println("Bytes available " + input.available());
         byte[] bytes = new byte[TOTAL_BYTES];
         input.read(bytes);
 

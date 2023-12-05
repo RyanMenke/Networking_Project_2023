@@ -35,17 +35,17 @@ public class PeerConfiguration {
 
     public void printConstants() {
 
-        System.out.println(numberOfPreferredNeighbors);
+        //System.out.println(numberOfPreferredNeighbors);
 
-        System.out.println(unchokingInterval);
+        //System.out.println(unchokingInterval);
 
-        System.out.println(optimisticUnchokingInterval);
+        //System.out.println(optimisticUnchokingInterval);
 
-        System.out.println(fileName);
+        //System.out.println(fileName);
 
-        System.out.println(fileSize);
+        //System.out.println(fileSize);
 
-        System.out.println(pieceSize);
+        //System.out.println(pieceSize);
 
     }
 

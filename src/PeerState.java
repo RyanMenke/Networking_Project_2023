@@ -6,7 +6,7 @@ public class PeerState {
     private boolean isInterested;
     private boolean isOptimisticallyUnchoked;
 
-    private boolean hasCompleteFile;
+    private volatile boolean hasCompleteFile;
 
     private int numberOfBitsInterval;
 

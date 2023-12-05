@@ -39,11 +39,11 @@ public class TCPConnectionCode {
 //            }
 //
 //            try (ServerSocket serverSocket = new ServerSocket(port)) {
-//                System.out.println("Peer is waiting for a connection on port " + port);
+//                //System.out.println("Peer is waiting for a connection on port " + port);
 //
 //                // Listen for incoming connections from other peers
 //                Socket clientSocket = serverSocket.accept();
-//                System.out.println("Connection established with the other peer.");
+//                //System.out.println("Connection established with the other peer.");
 //
 //                // Create an input stream to read the file
 //                FileInputStream fileInputStream = new FileInputStream(sharedFile);
@@ -58,7 +58,7 @@ public class TCPConnectionCode {
 //                    outputStream.write(buffer, 0, bytesRead);
 //                }
 //
-//                System.out.println("File sent successfully.");
+//                //System.out.println("File sent successfully.");
 //
 //                // Close the connection
 //                clientSocket.close();

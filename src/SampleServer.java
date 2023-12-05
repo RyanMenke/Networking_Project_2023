@@ -13,13 +13,13 @@ public class SampleServer {
     private static final int sPort = 8000;   //The server will be listening on this port number
 
 	public static void main(String[] args) throws Exception {
-		System.out.println("The server is running.");
+		//System.out.println("The server is running.");
         	ServerSocket listener = new ServerSocket(sPort);
 		int clientNum = 1;
         	try {
             		while(true) {
                 		new Handler(listener.accept(),clientNum).start();
-				System.out.println("Client "  + clientNum + " is connected!");
+				//System.out.println("Client "  + clientNum + " is connected!");
 				clientNum++;
             			}
         	} finally {
@@ -56,7 +56,7 @@ public class SampleServer {
                         //receive the message sent from the client
                         message = (String) in.readObject();
                         //show the message to the user
-                        System.out.println("Receive message: " + message + " from client " + no);
+                        //System.out.println("Receive message: " + message + " from client " + no);
                         //Capitalize all letters in the message
                         MESSAGE = message.toUpperCase();
                         //send MESSAGE back to the client
@@ -66,7 +66,7 @@ public class SampleServer {
                     System.err.println("Data received in unknown format");
                 }
             } catch (IOException ioException) {
-                System.out.println("Disconnect with Client " + no);
+                //System.out.println("Disconnect with Client " + no);
             } finally {
                 //Close connections
                 try {
@@ -74,7 +74,7 @@ public class SampleServer {
                     out.close();
                     connection.close();
                 } catch (IOException ioException) {
-                    System.out.println("Disconnect with Client " + no);
+                    //System.out.println("Disconnect with Client " + no);
                 }
             }
         }
@@ -84,7 +84,7 @@ public class SampleServer {
             try {
                 out.writeObject(msg);
                 out.flush();
-                System.out.println("Send message: " + msg + " to Client " + no);
+                //System.out.println("Send message: " + msg + " to Client " + no);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

@@ -65,15 +65,15 @@ public class ServerSocketConnection extends Thread {
 
     public void run() {
         try {
-            System.out.println("RUNNING Bbbbbbbbbbbbbbbbbbb");
+            //System.out.println("RUNNING Bbbbbbbbbbbbbbbbbbb");
             //initialize Input and Output streams
             out = connection.getOutputStream();
             out.flush();
             in = connection.getInputStream();
 
-            System.out.println("Attempting handshake with client");
+            //System.out.println("Attempting handshake with client");
             if (!doHandshake(in)) {
-                System.out.println("Failed to complete handshake (ServerSocketConnection)");
+                //System.out.println("Failed to complete handshake (ServerSocketConnection)");
                 return;
             }
 
@@ -94,27 +94,27 @@ public class ServerSocketConnection extends Thread {
                 Message message = Message.fromInputStream(in);
                 switch (message.getMessageType()) {
                     case Message.CHOKE:
-                        System.out.println("Received CHOKE");
+                        //System.out.println("Received CHOKE");
                         break;
                     case Message.UN_CHOKE:
-                        System.out.println("Received UN_CHOKE");
+                        //System.out.println("Received UN_CHOKE");
                         break;
                     case Message.INTERESTED:
-                        System.out.println("Received INTERESTED");
+                        //System.out.println("Received INTERESTED");
                         serverInterface.clientIsInterested(clientPeerId);
                         canAcceptHave = true;
 
                         LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " received the ‘interested’ message from " + clientPeerId + ".");
                         break;
                     case Message.NOT_INTERESTED:
-                        System.out.println("Received NOT_INTERESTED");
+                        //System.out.println("Received NOT_INTERESTED");
                         serverInterface.clientIsNotInterested(clientPeerId);
                         canAcceptHave = true;
 
                         LogWriter2.getInstance(self).writeLog("Peer " + self.getPeerId() + " received the ‘not interested’ message from " + clientPeerId + ".");
                         break;
                     case Message.HAVE:
-                        System.out.println("Received HAVE");
+                        //System.out.println("Received HAVE");
                         break;
                     case Message.BIT_FIELD:
                         BitSet bitfield = self.getBitfield();
@@ -127,28 +127,28 @@ public class ServerSocketConnection extends Thread {
                         BitSet clientBitset = ByteConverter.byteArrayToBitSet(message.getContent());
                         boolean isInterested = self.isInterestedInPeer(clientBitset);
 
-                        System.out.println("Am I interested on the server socket Side? " + isInterested);
+                        //System.out.println("Am I interested on the server socket Side? " + isInterested);
                         if (isInterested) {
                             // handling the interested case.
                             sendMessage(Message.makeInterested().toBytes());
                             // Send the interested message
-                            System.out.print("Interested sent (server Socket)");
+                            //System.out.print("Interested sent (server Socket)");
                         }
                         else {
                             // handling the "not interested" case
                             sendMessage(Message.makeNotInterested().toBytes());
-                            System.out.print("notInterested sent (server Socket)");
+                            //System.out.print("notInterested sent (server Socket)");
                         }
 
-                        System.out.println("Received BIT_FIELD");
+                        //System.out.println("Received BIT_FIELD");
                         break;
                     case Message.REQUEST:
 
-                        System.out.println("Received REQUEST");
+                        //System.out.println("Received REQUEST");
                         byte[] index = message.getContent();
                         // byte[] piece = Message.parsePieceMessage(message.getContent());
                         int indexForPiece = ByteBuffer.wrap(index, 0, Integer.BYTES).getInt();
-                        System.out.println("When receiving a request the index is: " + indexForPiece);
+                        //System.out.println("When receiving a request the index is: " + indexForPiece);
                         byte[] pieceArray = self.getPieceFromIndex(indexForPiece);
 
                         byte[] combinedArray = new byte[index.length + pieceArray.length];
@@ -164,7 +164,7 @@ public class ServerSocketConnection extends Thread {
 
                         break;
                     case Message.PIECE:
-                        System.out.println("Received PIECE");
+                        //System.out.println("Received PIECE");
                         break;
 
                     case Message.HAS_COMPLETE_FILE:
@@ -174,16 +174,16 @@ public class ServerSocketConnection extends Thread {
                         if (serverInterface.doAllPeersHaveCompleteFile()) {
                             setShouldClose(true);
                         }
-                        System.out.println("HAS COMPLETE FILE");
+                        System.out.println("HAS COMPLETE FILE: " + clientPeerId);
                         break;
                 }
             }
         } catch (IOException ioException) {
-//            System.out.println("Disconnect with Client " + clientNumber);
+//            //System.out.println("Disconnect with Client " + clientNumber);
         } finally {
             //Close connections
             try {
-                System.out.println("CLOSING SERVER CONNECTION");
+                //System.out.println("CLOSING SERVER CONNECTION");
                 if (shouldClose) {
                     in.close();
                     out.close();
@@ -193,7 +193,7 @@ public class ServerSocketConnection extends Thread {
 //                out.close();
 //                connection.close();
             } catch (IOException ioException) {
-//                System.out.println("Disconnect with Client " + clientNumber);
+//                //System.out.println("Disconnect with Client " + clientNumber);
             }
 
             serverInterface.onDisconnected(this);
@@ -226,7 +226,7 @@ public class ServerSocketConnection extends Thread {
             out.write(msg);
             out.flush();
         } catch (IOException ioException) {
-            System.out.println("Failed to send message to client ID " + clientPeerId + " socket state is closed " + connection.isClosed());
+            //System.out.println("Failed to send message to client ID " + clientPeerId + " socket state is closed " + connection.isClosed());
 //            ioException.printStackTrace();
         }
     }
@@ -258,7 +258,7 @@ public class ServerSocketConnection extends Thread {
     private boolean doHandshake(InputStream input) {
         try {
             Handshake clientHandshake = Handshake.fromInputStream(input);
-            System.out.println("Received client handshake");
+            //System.out.println("Received client handshake");
             clientPeerId = clientHandshake.getPeerID();
             serverInterface.onClientConnected(clientHandshake);
 
@@ -269,7 +269,7 @@ public class ServerSocketConnection extends Thread {
             //LogWriter.TCPReceiveConnection(self.getPeerId(), clientPeerId);
             return true;
         } catch (Exception e) {
-            System.out.println("Handshake failed " + e.getMessage());
+            //System.out.println("Handshake failed " + e.getMessage());
             e.printStackTrace();
             return false;
         }

@@ -3,23 +3,50 @@
   <component name="ChangeListManager">
     <list default="true" id="993a7e2f-1cfc-47e4-ab11-f34922ee2a5d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Networking Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Networking Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project/log_1001.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1001.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/log_1001.log.lck" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/log_1002.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1002.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/log_1002.log.lck" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/log_1003.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1003.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/log_1003.log.lck" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/log_1004.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1004.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/log_1004.log.lck" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/log_1005.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1005.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/log_1005.log.lck" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/project/log_1006.log" beforeDir="false" afterPath="$PROJECT_DIR$/project/log_1006.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClientSocketConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientSocketConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ClientSocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ClientSocketConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FileReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeerFileReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handshake.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handshake.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Handshake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Handshake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LogWriter2.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/LogWriter2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LogWriter2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LogWriter2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/peerProcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Message.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Peer.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Peer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Peer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Peer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PeerConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeerConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PeerConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeerConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PeerState.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeerState.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PeerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PeerState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SampleClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/SampleClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SampleClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SampleClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SampleServer$Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/SampleServer$Handler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SampleServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/SampleServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SampleServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SampleServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ServerSocketConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerSocketConnection.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ServerSocketConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ServerSocketConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TCPConnectionCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TCPConnectionCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proj1.tar" beforeDir="false" afterPath="$PROJECT_DIR$/project_config_file/proj1.tar" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,17 +84,18 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/project_config_file" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.14902943" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/project_config_file" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/project_config_file" />
+      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -83,15 +111,15 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.TmpDeleteMe">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="TmpDeleteMe" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TmpDeleteMe" />
       <module name="Networking Project" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TmpDeleteMe" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="TmpDeleteMe" />
+    <configuration name="peerProcess" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="peerProcess" />
       <module name="Networking Project" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -100,7 +128,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.TmpDeleteMe" />
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.peerProcess" />
       </list>
     </recent_temporary>
   </component>
@@ -118,7 +146,10 @@
       <workItem from="1698175748490" duration="13776000" />
       <workItem from="1700942583468" duration="23000" />
       <workItem from="1700942703625" duration="132740000" />
-      <workItem from="1701636732717" duration="2347000" />
+      <workItem from="1701636732717" duration="9232000" />
+      <workItem from="1701651776687" duration="465000" />
+      <workItem from="1701652580511" duration="6042000" />
+      <workItem from="1701734655489" duration="1196000" />
     </task>
     <servers />
   </component>
@@ -142,13 +173,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/FileReader.java</url>
-          <line>30</line>
+          <url>file://$PROJECT_DIR$/src/PeerFileReader.java</url>
+          <line>31</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LogWriter2.java</url>
-          <line>18</line>
+          <line>20</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

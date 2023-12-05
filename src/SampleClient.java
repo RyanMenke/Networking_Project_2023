@@ -15,7 +15,7 @@ public class SampleClient {
 		try{
 			//create a socket to connect to the server
 			requestSocket = new Socket("localhost", 8000);
-			System.out.println("Connected to localhost in port 8000");
+			//System.out.println("Connected to localhost in port 8000");
 			//initialize inputStream and outputStream
 			out = new ObjectOutputStream(requestSocket.getOutputStream());
 			out.flush();
@@ -25,7 +25,7 @@ public class SampleClient {
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 			while(true)
 			{
-				System.out.print("Hello, please input a sentence: ");
+				//System.out.print("Hello, please input a sentence: ");
 				//read a sentence from the standard input
 				message = bufferedReader.readLine();
 				//Send the sentence to the server
@@ -33,7 +33,7 @@ public class SampleClient {
 				//Receive the upperCase sentence from the server
 				MESSAGE = (String)in.readObject();
 				//show the message to the user
-				System.out.println("Receive message: " + MESSAGE);
+				//System.out.println("Receive message: " + MESSAGE);
 			}
 		}
 		catch (ConnectException e) {
